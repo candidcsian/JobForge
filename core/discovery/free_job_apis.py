@@ -172,24 +172,59 @@ def extract_skills_from_profile(career_dir):
 def calculate_match_score(job, user_skills):
     """Calculate match score between job and user skills."""
     job_text = f"{job['title']} {job['description']}".lower()
+    title_lower = job['title'].lower()
     
     matches = 0
+    matched_skills = []
+    
     for skill in user_skills:
         if skill.lower() in job_text:
             matches += 1
+            matched_skills.append(skill)
     
-    # Score based on percentage of skills matched
+    # Base score from skill matches
     if user_skills:
         score = int((matches / len(user_skills)) * 100)
     else:
-        score = 50  # Default if no skills extracted
+        score = 50
     
-    # Boost score if title matches common roles
-    title_lower = job['title'].lower()
-    if any(word in title_lower for word in ['senior', 'lead', 'engineer', 'developer']):
+    # Boost for role-specific keywords
+    role_boosts = {
+        'qa': ['qa', 'quality', 'test', 'testing', 'automation', 'selenium', 'cypress'],
+        'sdet': ['sdet', 'test', 'automation', 'framework', 'ci/cd', 'jenkins'],
+        'engineer': ['engineer', 'software', 'developer', 'development'],
+        'senior': ['senior', 'lead', 'staff', 'principal'],
+        'backend': ['backend', 'api', 'server', 'database', 'microservices'],
+        'frontend': ['frontend', 'react', 'vue', 'angular', 'ui', 'ux'],
+        'fullstack': ['fullstack', 'full-stack', 'full stack'],
+        'devops': ['devops', 'kubernetes', 'docker', 'aws', 'cloud', 'infrastructure']
+    }
+    
+    # Check which role categories match
+    for role, keywords in role_boosts.items():
+        if any(kw in title_lower for kw in keywords):
+            score = min(100, score + 15)
+            break
+    
+    # Boost for seniority match
+    if any(word in title_lower for word in ['senior', 'lead', 'staff', 'principal']):
         score = min(100, score + 10)
     
-    return score, matches
+    # Penalty for mismatched roles (e.g., if user is QA but job is ML Engineer)
+    mismatch_keywords = {
+        'machine learning': ['machine learning', 'ml engineer', 'data scientist'],
+        'sales': ['sales', 'account executive', 'business development'],
+        'marketing': ['marketing', 'growth', 'seo', 'content'],
+        'design': ['designer', 'ux designer', 'ui designer', 'graphic']
+    }
+    
+    for category, keywords in mismatch_keywords.items():
+        if any(kw in title_lower for kw in keywords):
+            # Check if user has related skills
+            if not any(kw in ' '.join(user_skills).lower() for kw in keywords):
+                score = max(0, score - 20)
+    
+    return score, len(matched_skills)
 
 
 def search_and_match_jobs(keywords, career_dir, min_score=40):

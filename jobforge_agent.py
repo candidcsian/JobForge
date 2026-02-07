@@ -457,7 +457,7 @@ class JobForgeAgent:
         print("="*70)
         
         try:
-            matched_jobs = search_and_match_jobs(role, self.career_dir, min_score=40)
+            matched_jobs = search_and_match_jobs(role, self.career_dir, min_score=25)
             
             if matched_jobs:
                 print(f"\n✨ Found {len(matched_jobs)} jobs matching your profile!")
