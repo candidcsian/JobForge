@@ -438,6 +438,9 @@ class JobForgeAgent:
         
     def search_jobs(self):
         """Search for jobs and match to profile"""
+        from urllib.parse import quote
+        from datetime import datetime
+        
         print("\n" + "="*70)
         print("🔍 STEP 9: Job Search & Matching")
         print("="*70)
@@ -465,7 +468,6 @@ class JobForgeAgent:
         print("   ✅ Wellfound (Startups)")
         
         # Generate search URLs
-        from urllib.parse import quote
         role_encoded = quote(role)
         location_encoded = quote(location)
         
@@ -501,8 +503,6 @@ class JobForgeAgent:
         
         print(f"\n✅ Links saved to: {results_file}")
         print("\n💡 Tip: Open these links in your browser and start applying!")
-        
-        from datetime import datetime
         
     def generate_action_sheet(self):
         """Generate action sheet with job links"""
