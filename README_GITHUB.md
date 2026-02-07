@@ -31,22 +31,22 @@ JobForge is an interactive tool that helps you build ATS-optimized resumes, opti
 
 ## 🚀 Quick Start
 
-### One-Command Install & Run
+### Two-Step Install (Recommended)
 
-**macOS / Linux:**
+**Step 1: Download & Install**
 ```bash
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/quick_install.sh | bash
 ```
 
-**That's it!** The script will:
-- ✅ Check Python (install if needed)
-- ✅ Download JobForge
-- ✅ Install dependencies
-- ✅ Start the interactive agent
+**Step 2: Run the Agent**
+```bash
+cd ~/JobForge
+./start_agent.sh
+```
 
-### Manual Installation (Alternative)
+That's it! The agent will guide you through building your resume.
 
-If you prefer manual setup:
+### Alternative: Manual Installation
 
 ```bash
 # Clone the repository
@@ -60,8 +60,9 @@ cd JobForge
 ### Windows
 
 ```powershell
-# Download and extract from GitHub
-# Then run:
+# Download ZIP from GitHub
+# Extract to a folder
+# Open Command Prompt:
 cd JobForge
 python jobforge_agent.py
 ```
