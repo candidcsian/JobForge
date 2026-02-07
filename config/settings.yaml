@@ -1,0 +1,28 @@
+# Job Search Preferences
+job_titles:
+  - Software Engineer
+  - Senior Software Engineer
+  - Machine Learning Engineer
+  - Data Scientist
+
+locations:
+  - California
+  - Remote
+  - New York
+  - Washington
+
+exclude_levels:
+  - junior
+  - intern
+
+# Matching Configuration
+min_match_score: 60
+experience_years: 5
+
+# Resume Generation
+resume_type: software-engineer
+llm_provider: claude
+
+# Discovery Settings
+request_timeout: 30
+max_retries: 3

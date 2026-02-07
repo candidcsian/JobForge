@@ -1,0 +1,279 @@
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                    JOBFORGE - BUILD RESUME FLOW                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         STEP 1: INPUT YOUR EXPERIENCE                    │
+└─────────────────────────────────────────────────────────────────────────┘
+
+                    ┌──────────────────────────┐
+                    │   3 Ways to Input        │
+                    └──────────┬───────────────┘
+                               │
+           ┌───────────────────┼───────────────────┐
+           │                   │                   │
+           ▼                   ▼                   ▼
+    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+    │  Option 1:  │    │  Option 2:  │    │  Option 3:  │
+    │   Upload    │    │   Manual    │    │   Edit      │
+    │   Resume    │    │   Entry     │    │   Markdown  │
+    └──────┬──────┘    └──────┬──────┘    └──────┬──────┘
+           │                   │                   │
+           ▼                   ▼                   ▼
+    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+    │ resume.pdf  │    │ Interactive │    │ career/     │
+    │ resume.docx │    │ Wizard      │    │ 2024.md     │
+    │ resume.txt  │    │             │    │ 2023.md     │
+    └─────────────┘    └─────────────┘    └─────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    STEP 2: PARSE & EXTRACT INFORMATION                   │
+└─────────────────────────────────────────────────────────────────────────┘
+
+           ┌───────────────────┼───────────────────┐
+           │                   │                   │
+           ▼                   ▼                   ▼
+    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+    │  PyPDF2     │    │  Python     │    │  Markdown   │
+    │  python-    │    │  Input      │    │  Parser     │
+    │  docx       │    │  Processing │    │             │
+    └──────┬──────┘    └──────┬──────┘    └──────┬──────┘
+           │                   │                   │
+           └───────────────────┼───────────────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │  Extract Information │
+                    └──────────┬───────────┘
+                               │
+                ┌──────────────┼──────────────┐
+                │              │              │
+                ▼              ▼              ▼
+         ┌──────────┐   ┌──────────┐   ┌──────────┐
+         │  Skills  │   │  Titles  │   │   Years  │
+         │          │   │          │   │          │
+         │ Python   │   │ Senior   │   │    5     │
+         │ AWS      │   │ Engineer │   │  years   │
+         │ Docker   │   │ QA Lead  │   │          │
+         │ ML       │   │          │   │          │
+         │ ...21    │   │ ...2     │   │          │
+         └──────────┘   └──────────┘   └──────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    STEP 3: STORE AS MASTER PROFILE                       │
+└─────────────────────────────────────────────────────────────────────────┘
+
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │   Master Profile     │
+                    │   (career/*.md)      │
+                    └──────────┬───────────┘
+                               │
+                    ┌──────────┴──────────┐
+                    │                     │
+                    │  Skills: 21         │
+                    │  Titles: 2          │
+                    │  Years: 5           │
+                    │  Experience:        │
+                    │  - Company A        │
+                    │  - Company B        │
+                    │  Achievements:      │
+                    │  - Led team of 5    │
+                    │  - Reduced by 60%   │
+                    │                     │
+                    └─────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│              STEP 4: GENERATE TAILORED RESUMES (On Demand)               │
+└─────────────────────────────────────────────────────────────────────────┘
+
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │  Match Jobs to       │
+                    │  Master Profile      │
+                    └──────────┬───────────┘
+                               │
+                    ┌──────────┴──────────┐
+                    │                     │
+                    │  Job 1: OpenAI      │
+                    │  Score: 95%         │
+                    │                     │
+                    │  Job 2: Anthropic   │
+                    │  Score: 87%         │
+                    │                     │
+                    │  Job 3: Google      │
+                    │  Score: 78%         │
+                    │                     │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │  Generate Tailored   │
+                    │  Resume for Each Job │
+                    └──────────┬───────────┘
+                               │
+           ┌───────────────────┼───────────────────┐
+           │                   │                   │
+           ▼                   ▼                   ▼
+    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+    │  Resume 1:  │    │  Resume 2:  │    │  Resume 3:  │
+    │   OpenAI    │    │  Anthropic  │    │   Google    │
+    │             │    │             │    │             │
+    │ Emphasizes: │    │ Emphasizes: │    │ Emphasizes: │
+    │ - ML        │    │ - AI Safety │    │ - Scale     │
+    │ - Python    │    │ - Research  │    │ - Systems   │
+    │ - Scale     │    │ - Ethics    │    │ - Cloud     │
+    │             │    │             │    │             │
+    │ "Why OpenAI"│    │ "Why        │    │ "Why Google"│
+    │ section     │    │ Anthropic"  │    │ section     │
+    └─────────────┘    └─────────────┘    └─────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+                        KEY CONCEPT: ONE TO MANY
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                                                                          │
+│                    ┌──────────────────────┐                            │
+│                    │   1 Master Profile   │                            │
+│                    │   (Your Experience)  │                            │
+│                    └──────────┬───────────┘                            │
+│                               │                                         │
+│                               │ Generates                               │
+│                               │                                         │
+│           ┌───────────────────┼───────────────────┐                    │
+│           │                   │                   │                    │
+│           ▼                   ▼                   ▼                    │
+│    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐            │
+│    │  Resume 1   │    │  Resume 2   │    │  Resume 3   │            │
+│    │  (OpenAI)   │    │ (Anthropic) │    │  (Google)   │            │
+│    └─────────────┘    └─────────────┘    └─────────────┘            │
+│           │                   │                   │                    │
+│           ▼                   ▼                   ▼                    │
+│    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐            │
+│    │  Resume 4   │    │  Resume 5   │    │  Resume 6   │            │
+│    │   (Meta)    │    │  (Amazon)   │    │  (Stripe)   │            │
+│    └─────────────┘    └─────────────┘    └─────────────┘            │
+│           │                   │                   │                    │
+│           ▼                   ▼                   ▼                    │
+│         ... up to 100+ tailored resumes ...                           │
+│                                                                          │
+│  Maintain ONCE → Generate INFINITE variations                          │
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+                    RESUME GENERATION ALGORITHM
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                                                                          │
+│  Input: Master Profile + Job Description                               │
+│                                                                          │
+│  Step 1: Analyze Job                                                   │
+│    ├─ Extract required skills                                          │
+│    ├─ Identify key responsibilities                                    │
+│    └─ Determine experience level                                       │
+│                                                                          │
+│  Step 2: Match Profile                                                 │
+│    ├─ Find matching skills (40 points)                                │
+│    ├─ Match job titles (40 points)                                    │
+│    └─ Match experience level (20 points)                              │
+│                                                                          │
+│  Step 3: Generate Resume                                               │
+│    ├─ Summary: Highlight relevant experience                          │
+│    ├─ Experience: Emphasize matching achievements                     │
+│    ├─ Skills: Categorize by relevance                                 │
+│    └─ "Why [Company]": Custom section                                 │
+│                                                                          │
+│  Output: Tailored Resume (Markdown/PDF)                               │
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+                        EXAMPLE: SOUMYA'S PROFILE
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  INPUT: career/soumya-2025.md                                          │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  Experience:                                                            │
+│  - Senior QAE (L6) at Amazon Alexa Communications                      │
+│  - 8+ years experience                                                 │
+│  - Led QA for Announcements, HCA, S2E, S2P                            │
+│  - 200+ automated tests                                                │
+│  - Highest contributor: 60% bugs, 43% test cases                      │
+│                                                                          │
+│  Skills Extracted:                                                      │
+│  - Optimus, JIRA, Confluence                                           │
+│  - Test automation, Regression testing                                 │
+│  - Alexa platform, Voice ID                                            │
+│  - i18n testing, Accessibility                                         │
+│  - Python, API testing                                                 │
+│                                                                          │
+│  Certifications:                                                        │
+│  - AWS AI Practitioner                                                 │
+│  - MLU courses, ISTQB, SAFe, CSM                                      │
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│  OUTPUT: 10 Tailored Resumes                                           │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  Resume 1: Meta - Senior QA Engineer                                   │
+│    Emphasizes: Alexa platform, Voice tech, Scale                       │
+│                                                                          │
+│  Resume 2: Google - SDET                                               │
+│    Emphasizes: Automation (200+ tests), CI/CD                         │
+│                                                                          │
+│  Resume 3: Microsoft - Test Automation Lead                            │
+│    Emphasizes: Leadership, Team contribution                           │
+│                                                                          │
+│  Resume 4: Apple - QA Engineer                                         │
+│    Emphasizes: i18n testing, Accessibility                            │
+│                                                                          │
+│  Resume 5: Spotify - Quality Engineer                                  │
+│    Emphasizes: Audio/Voice experience                                  │
+│                                                                          │
+│  ... 5 more tailored versions ...                                      │
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+                    COMMANDS TO BUILD RESUME
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                                                                          │
+│  # Option 1: Interactive (Easiest)                                     │
+│  python3 interactive.py                                                │
+│    → Upload resume.pdf                                                 │
+│    → OR enter experience manually                                      │
+│    → Saves to career/*.md                                              │
+│                                                                          │
+│  # Option 2: Manual Edit                                               │
+│  vim career/2024.md                                                    │
+│    → Write your experience in markdown                                 │
+│    → Include skills, achievements, metrics                             │
+│                                                                          │
+│  # Option 3: Copy existing                                             │
+│  cp my-resume.pdf ~/JobForge/                                          │
+│  python3 jobforge.py match --resume my-resume.pdf                     │
+│    → Parses and extracts information                                   │
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════

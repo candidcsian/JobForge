@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# User-generated content (PRIVATE - don't commit)
+results/resumes/*.docx
+results/resumes/*.pdf
+results/resumes/*.txt
+results/resumes/LinkedIn*.md
+results/resumes/README*.md
+results/jobs/
+results/matches/
+
+# Career profiles (PRIVATE - don't commit user data)
+career/*-master.md
+career/*-skills-matrix.md
+career/senthil*.md
+career/soumya*.md
+career/vrinda*.md
+career/2023.md
+career/2024.md
+
+# Keep example files
+!career/README.md
+!career/example-profile.md
+!results/resumes/.gitkeep
+!results/jobs/.gitkeep
+!results/matches/.gitkeep
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Config with sensitive data
+config/user-config.yaml
+config/api-keys.yaml
+
+# Test data
+test_data/
