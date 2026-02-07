@@ -507,38 +507,68 @@ class JobForgeAgent:
     def generate_action_sheet(self):
         """Generate action sheet with job links"""
         print("\n" + "="*70)
-        print("📊 STEP 10: Action Sheet Generation")
+        print("📊 STEP 10: Advanced Job Discovery (Optional)")
         print("="*70)
         
-        print("\nWould you like to generate an action sheet?")
-        print("(This creates a CSV with job details, LinkedIn links, and tracking columns)")
-        choice = input("\n   (yes/no): ").lower()
+        print("\nWould you like to search company career pages directly?")
+        print("(This searches 53 top companies: OpenAI, Google, Meta, Amazon, etc.)")
+        print("⚠️  Note: This takes 5-10 minutes and requires internet")
+        choice = input("\n   (yes/no): ").lower().strip()
         
         if choice == 'yes':
-            print("\n⏳ Generating action sheet...")
+            print("\n⏳ Discovering jobs from company career pages...")
+            print("   This will take a few minutes...\n")
+            
             try:
                 import subprocess
                 result = subprocess.run(
-                    ['python3', 'core/cli/action_sheet.py'],
+                    ['python3', 'jobforge.py', 'discover'],
                     cwd=self.base_dir,
-                    capture_output=True,
-                    text=True
+                    timeout=600  # 10 minute timeout
                 )
                 
                 if result.returncode == 0:
-                    print("✅ Action sheet created!")
-                    print(f"   Location: {self.results_dir}/matches/ACTION_SHEET.csv")
-                    print("\n   Open it in Excel/Google Sheets to:")
-                    print("   ✅ See all matched jobs")
-                    print("   ✅ Click LinkedIn referral links")
-                    print("   ✅ Track your applications")
+                    print("\n✅ Job discovery completed!")
+                    print(f"   Jobs saved to: {self.results_dir}/jobs/")
+                    
+                    # Now run matching
+                    print("\n⏳ Matching jobs to your profile...")
+                    result = subprocess.run(
+                        ['python3', 'jobforge.py', 'match', '--career-dir', str(self.career_dir)],
+                        cwd=self.base_dir
+                    )
+                    
+                    if result.returncode == 0:
+                        print("\n✅ Job matching completed!")
+                        print(f"   Matches saved to: {self.results_dir}/matches/")
+                        
+                        # Generate action sheet
+                        print("\n⏳ Generating action sheet...")
+                        action_sheet = self.results_dir / "matches" / "ACTION_SHEET.csv"
+                        if action_sheet.exists():
+                            print(f"\n✅ Action sheet created!")
+                            print(f"   Location: {action_sheet}")
+                            print("\n   Open it in Excel/Google Sheets to:")
+                            print("   ✅ See all matched jobs with scores")
+                            print("   ✅ Click direct application links")
+                            print("   ✅ Find LinkedIn referral contacts")
+                            print("   ✅ Track your applications")
+                        else:
+                            print("\n⚠️  No matches found above threshold")
+                            print("   Try lowering the match score threshold")
                 else:
-                    print("⚠️  Action sheet generation skipped")
-                    print("   (Run job matching first)")
+                    print("\n⚠️  Job discovery encountered issues")
+                    print("   Some companies may have blocked automated access")
+                    print("   Use the aggregator links from Step 9 instead")
+            except subprocess.TimeoutExpired:
+                print("\n⚠️  Job discovery timed out")
+                print("   Use the aggregator links from Step 9 instead")
             except Exception as e:
-                print(f"⚠️  Could not generate action sheet: {e}")
+                print(f"\n⚠️  Could not run job discovery: {e}")
+                print("   Use the aggregator links from Step 9 instead")
         else:
-            print("\n⏭️  Skipping action sheet")
+            print("\n⏭️  Skipping company-specific discovery")
+            print("   Use the aggregator links from Step 9 to find jobs!")
     
     def run(self):
         """Main execution flow"""
