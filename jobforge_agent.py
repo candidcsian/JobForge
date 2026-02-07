@@ -84,8 +84,11 @@ class JobForgeAgent:
         try:
             start_year_int = int(start_year)
             current_year = 2026
-            
             print(f"\nGreat! You have {current_year - start_year_int} years of experience.")
+        except ValueError:
+            print("Invalid year. Using 2015 as default.")
+            start_year_int = 2015
+        
         print("\nNow, I'll ask about your work history year by year.")
         print("You can provide:")
         print("  - Resume documents (PDF/DOCX)")

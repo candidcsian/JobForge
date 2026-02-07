@@ -92,10 +92,10 @@ echo ""
 # Run the agent
 echo "🎯 Starting JobForge Agent..."
 echo ""
-python3 jobforge_agent.py
+python3 test_agent.py
 
 echo ""
-echo "✅ JobForge session complete!"
+echo "✅ JobForge test complete!"
 echo ""
 echo "📂 Your files are in: ~/JobForge"
 echo "   - Career profile: ~/JobForge/career/"
