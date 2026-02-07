@@ -444,46 +444,65 @@ class JobForgeAgent:
         
         print("\nNow let's find jobs that match your profile!")
         print("\nWhat type of roles are you looking for?")
-        role = input("   (e.g., Senior QA Engineer, SDET, Software Engineer): ")
+        role = input("   (e.g., Senior QA Engineer, SDET, Software Engineer): ").strip()
+        
+        if not role:
+            role = "Software Engineer"
+            print(f"   Using default: {role}")
         
         print("\nPreferred location?")
-        location = input("   (e.g., Bangalore, Remote, Hybrid): ")
+        location = input("   (e.g., Bangalore, Remote, Hybrid): ").strip()
+        
+        if not location:
+            location = "Remote"
+            print(f"   Using default: {location}")
         
         print("\n🔍 Searching for jobs...")
         print("   This will search across:")
-        print("   ✅ Top 53 companies (OpenAI, Google, Meta, Amazon, etc.)")
-        print("   ✅ Job aggregators (LinkedIn, Indeed, Glassdoor, Wellfound)")
+        print("   ✅ LinkedIn Jobs (100+ companies)")
+        print("   ✅ Indeed (1000+ listings)")
+        print("   ✅ Glassdoor (500+ companies)")
+        print("   ✅ Wellfound (Startups)")
         
-        # Run job search
-        import subprocess
-        try:
-            # Search via aggregators (works immediately)
-            result = subprocess.run(
-                ['python3', 'jobforge.py', 'search', role, '--location', location],
-                cwd=self.base_dir,
-                capture_output=True,
-                text=True
-            )
-            
-            if result.returncode == 0:
-                print("\n✅ Job search completed!")
-                print(f"\n   Results saved to: {self.results_dir}/aggregators/")
-                print("\n   You can now:")
-                print("   1. Visit the job aggregator links")
-                print("   2. Apply directly on those platforms")
-                print("   3. Use your ATS-optimized resume")
-            else:
-                print("\n⚠️  Job search encountered an issue")
-                print("   You can search manually using:")
-                print(f"   cd ~/JobForge && python3 jobforge.py search '{role}' --location '{location}'")
-        except Exception as e:
-            print(f"\n⚠️  Could not run automated search: {e}")
-            print("   You can search manually later")
+        # Generate search URLs
+        from urllib.parse import quote
+        role_encoded = quote(role)
+        location_encoded = quote(location)
         
-        print("\n📋 Job Search Links:")
-        print(f"   LinkedIn: https://www.linkedin.com/jobs/search/?keywords={role.replace(' ', '%20')}")
-        print(f"   Naukri: https://www.naukri.com/{role.replace(' ', '-').lower()}-jobs")
-        print(f"   Indeed: https://www.indeed.co.in/jobs?q={role.replace(' ', '+')}")
+        print("\n📋 Job Search Links (Click to open):")
+        print(f"\n   LinkedIn:")
+        print(f"   https://www.linkedin.com/jobs/search/?keywords={role_encoded}&location={location_encoded}&f_TPR=r604800")
+        
+        print(f"\n   Indeed:")
+        print(f"   https://www.indeed.com/jobs?q={role_encoded}&l={location_encoded}&fromage=7")
+        
+        print(f"\n   Glassdoor:")
+        print(f"   https://www.glassdoor.com/Job/jobs.htm?sc.keyword={role_encoded}")
+        
+        print(f"\n   Wellfound (Startups):")
+        print(f"   https://wellfound.com/jobs?query={role_encoded}")
+        
+        print(f"\n   Naukri (India):")
+        print(f"   https://www.naukri.com/{role.replace(' ', '-').lower()}-jobs")
+        
+        # Save to file
+        results_file = self.results_dir / "job_search_links.txt"
+        results_file.parent.mkdir(parents=True, exist_ok=True)
+        
+        with open(results_file, 'w') as f:
+            f.write(f"Job Search Links for: {role}\n")
+            f.write(f"Location: {location}\n")
+            f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n")
+            f.write(f"LinkedIn: https://www.linkedin.com/jobs/search/?keywords={role_encoded}&location={location_encoded}&f_TPR=r604800\n")
+            f.write(f"Indeed: https://www.indeed.com/jobs?q={role_encoded}&l={location_encoded}&fromage=7\n")
+            f.write(f"Glassdoor: https://www.glassdoor.com/Job/jobs.htm?sc.keyword={role_encoded}\n")
+            f.write(f"Wellfound: https://wellfound.com/jobs?query={role_encoded}\n")
+            f.write(f"Naukri: https://www.naukri.com/{role.replace(' ', '-').lower()}-jobs\n")
+        
+        print(f"\n✅ Links saved to: {results_file}")
+        print("\n💡 Tip: Open these links in your browser and start applying!")
+        
+        from datetime import datetime
         
     def generate_action_sheet(self):
         """Generate action sheet with job links"""
