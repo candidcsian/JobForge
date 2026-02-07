@@ -43,22 +43,32 @@ class JobForgeAgent:
         print("📝 STEP 1: Basic Information")
         print("="*70)
         
-        self.user_data['name'] = input("\n1. What's your full name? ")
-        self.user_data['email'] = input("2. Your email address: ")
-        self.user_data['phone'] = input("3. Your phone number: ")
-        self.user_data['location'] = input("4. Current location (e.g., Bangalore, India): ")
+        print("\n1. What's your full name?")
+        self.user_data['name'] = input("   > ")
+        
+        print("2. Your email address:")
+        self.user_data['email'] = input("   > ")
+        
+        print("3. Your phone number:")
+        self.user_data['phone'] = input("   > ")
+        
+        print("4. Current location (e.g., Bangalore, India):")
+        self.user_data['location'] = input("   > ")
         
         print("\n5. Current employment status:")
         print("   a) Employed")
         print("   b) Unemployed")
         print("   c) Freelancing")
-        status = input("   Choose (a/b/c): ").lower()
+        status = input("   Choose (a/b/c): ").lower().strip()
         self.user_data['employment_status'] = status
         
         if status == 'a':
-            self.user_data['current_company'] = input("6. Current company name: ")
-            self.user_data['current_role'] = input("7. Current job title: ")
-            self.user_data['current_start'] = input("8. When did you start (e.g., Jan 2020)? ")
+            print("\n6. Current company name:")
+            self.user_data['current_company'] = input("   > ")
+            print("7. Current job title:")
+            self.user_data['current_role'] = input("   > ")
+            print("8. When did you start (e.g., Jan 2020)?")
+            self.user_data['current_start'] = input("   > ")
         
         print("\n✅ Basic info collected!")
         
@@ -68,10 +78,14 @@ class JobForgeAgent:
         print("📅 STEP 2: Career Timeline")
         print("="*70)
         
-        start_year = input("\nWhat year did you start your career? (e.g., 2009): ")
-        current_year = 2026
+        print("\nWhat year did you start your career? (e.g., 2009):")
+        start_year = input("   > ").strip()
         
-        print(f"\nGreat! You have {current_year - int(start_year)} years of experience.")
+        try:
+            start_year_int = int(start_year)
+            current_year = 2026
+            
+            print(f"\nGreat! You have {current_year - start_year_int} years of experience.")
         print("\nNow, I'll ask about your work history year by year.")
         print("You can provide:")
         print("  - Resume documents (PDF/DOCX)")
