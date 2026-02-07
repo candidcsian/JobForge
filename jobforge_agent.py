@@ -504,71 +504,48 @@ class JobForgeAgent:
         print(f"\n✅ Links saved to: {results_file}")
         print("\n💡 Tip: Open these links in your browser and start applying!")
         
-    def generate_action_sheet(self):
-        """Generate action sheet with job links"""
+    def show_company_links(self):
+        """Show direct links to top company career pages"""
         print("\n" + "="*70)
-        print("📊 STEP 10: Advanced Job Discovery (Optional)")
+        print("🏢 STEP 10: Top Company Career Pages")
         print("="*70)
         
-        print("\nWould you like to search company career pages directly?")
-        print("(This searches 53 top companies: OpenAI, Google, Meta, Amazon, etc.)")
-        print("⚠️  Note: This takes 5-10 minutes and requires internet")
-        choice = input("\n   (yes/no): ").lower().strip()
+        print("\nDirect links to apply at top companies:")
         
-        if choice == 'yes':
-            print("\n⏳ Discovering jobs from company career pages...")
-            print("   This will take a few minutes...\n")
-            
-            try:
-                import subprocess
-                result = subprocess.run(
-                    ['python3', 'jobforge.py', 'discover'],
-                    cwd=self.base_dir,
-                    timeout=600  # 10 minute timeout
-                )
-                
-                if result.returncode == 0:
-                    print("\n✅ Job discovery completed!")
-                    print(f"   Jobs saved to: {self.results_dir}/jobs/")
-                    
-                    # Now run matching
-                    print("\n⏳ Matching jobs to your profile...")
-                    result = subprocess.run(
-                        ['python3', 'jobforge.py', 'match', '--career-dir', str(self.career_dir)],
-                        cwd=self.base_dir
-                    )
-                    
-                    if result.returncode == 0:
-                        print("\n✅ Job matching completed!")
-                        print(f"   Matches saved to: {self.results_dir}/matches/")
-                        
-                        # Generate action sheet
-                        print("\n⏳ Generating action sheet...")
-                        action_sheet = self.results_dir / "matches" / "ACTION_SHEET.csv"
-                        if action_sheet.exists():
-                            print(f"\n✅ Action sheet created!")
-                            print(f"   Location: {action_sheet}")
-                            print("\n   Open it in Excel/Google Sheets to:")
-                            print("   ✅ See all matched jobs with scores")
-                            print("   ✅ Click direct application links")
-                            print("   ✅ Find LinkedIn referral contacts")
-                            print("   ✅ Track your applications")
-                        else:
-                            print("\n⚠️  No matches found above threshold")
-                            print("   Try lowering the match score threshold")
-                else:
-                    print("\n⚠️  Job discovery encountered issues")
-                    print("   Some companies may have blocked automated access")
-                    print("   Use the aggregator links from Step 9 instead")
-            except subprocess.TimeoutExpired:
-                print("\n⚠️  Job discovery timed out")
-                print("   Use the aggregator links from Step 9 instead")
-            except Exception as e:
-                print(f"\n⚠️  Could not run job discovery: {e}")
-                print("   Use the aggregator links from Step 9 instead")
-        else:
-            print("\n⏭️  Skipping company-specific discovery")
-            print("   Use the aggregator links from Step 9 to find jobs!")
+        companies = {
+            "OpenAI": "https://openai.com/careers/",
+            "Google": "https://careers.google.com/",
+            "Meta": "https://www.metacareers.com/",
+            "Amazon": "https://www.amazon.jobs/",
+            "Microsoft": "https://careers.microsoft.com/",
+            "Apple": "https://www.apple.com/careers/",
+            "Netflix": "https://jobs.netflix.com/",
+            "Stripe": "https://stripe.com/jobs",
+            "Airbnb": "https://careers.airbnb.com/",
+            "Uber": "https://www.uber.com/careers/",
+            "Coinbase": "https://www.coinbase.com/careers",
+            "Databricks": "https://www.databricks.com/company/careers",
+            "Snowflake": "https://careers.snowflake.com/",
+            "Anthropic": "https://www.anthropic.com/careers",
+            "Spotify": "https://www.lifeatspotify.com/jobs"
+        }
+        
+        print("\n🔗 Top 15 Companies:")
+        for i, (company, url) in enumerate(companies.items(), 1):
+            print(f"   {i:2d}. {company:15s} {url}")
+        
+        # Save to file
+        links_file = self.results_dir / "company_career_pages.txt"
+        links_file.parent.mkdir(parents=True, exist_ok=True)
+        
+        with open(links_file, 'w') as f:
+            f.write("Top Company Career Pages\n")
+            f.write("="*70 + "\n\n")
+            for company, url in companies.items():
+                f.write(f"{company}: {url}\n")
+        
+        print(f"\n✅ Links saved to: {links_file}")
+        print("\n💡 Tip: Visit these pages and search for your role!")
     
     def run(self):
         """Main execution flow"""
@@ -581,8 +558,8 @@ class JobForgeAgent:
             self.create_ats_resume()
             self.optimize_linkedin()
             self.setup_job_portals()
-            self.search_jobs()  # NEW: Search for jobs
-            self.generate_action_sheet()  # NEW: Generate action sheet
+            self.search_jobs()  # Job aggregator links (works!)
+            self.show_company_links()  # Direct company links (simple!)
             self.job_search_strategy()
             self.generate_summary()
             
