@@ -40,7 +40,7 @@ fi
 
 # Activate and install
 source venv/bin/activate
-pip install -q --upgrade pip python-docx pyyaml 2>/dev/null
+pip install -q --upgrade pip python-docx pyyaml httpx 2>/dev/null
 
 echo "✅ Ready!"
 echo ""

@@ -1,0 +1,18 @@
+Top Company Career Pages
+======================================================================
+
+OpenAI: https://openai.com/careers/
+Google: https://careers.google.com/
+Meta: https://www.metacareers.com/
+Amazon: https://www.amazon.jobs/
+Microsoft: https://careers.microsoft.com/
+Apple: https://www.apple.com/careers/
+Netflix: https://jobs.netflix.com/
+Stripe: https://stripe.com/jobs
+Airbnb: https://careers.airbnb.com/
+Uber: https://www.uber.com/careers/
+Coinbase: https://www.coinbase.com/careers
+Databricks: https://www.databricks.com/company/careers
+Snowflake: https://careers.snowflake.com/
+Anthropic: https://www.anthropic.com/careers
+Spotify: https://www.lifeatspotify.com/jobs

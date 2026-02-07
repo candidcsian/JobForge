@@ -435,12 +435,15 @@ class JobForgeAgent:
         """Search for jobs and match to profile"""
         from urllib.parse import quote
         from datetime import datetime
+        import sys
+        sys.path.insert(0, str(self.base_dir / 'core'))
+        from discovery.free_job_apis import search_and_match_jobs, save_matches_to_csv
         
         print("\n" + "="*70)
-        print("🔍 STEP 9: Job Search & Matching")
+        print("🔍 STEP 9: Smart Job Search & Matching")
         print("="*70)
         
-        print("\nNow let's find jobs that match your profile!")
+        print("\nNow let's find jobs that match YOUR profile!")
         print("\nWhat type of roles are you looking for?")
         role = input("   (e.g., Senior QA Engineer, SDET, Software Engineer): ").strip()
         
@@ -448,30 +451,57 @@ class JobForgeAgent:
             role = "Software Engineer"
             print(f"   Using default: {role}")
         
-        print("\nPreferred location?")
-        location = input("   (e.g., Bangalore, Remote, Hybrid): ").strip()
+        # Smart matching from free APIs
+        print("\n" + "="*70)
+        print("🎯 SMART MATCHING - Finding jobs that match YOUR skills")
+        print("="*70)
         
-        if not location:
-            location = "Remote"
-            print(f"   Using default: {location}")
+        try:
+            matched_jobs = search_and_match_jobs(role, self.career_dir, min_score=40)
+            
+            if matched_jobs:
+                print(f"\n✨ Found {len(matched_jobs)} jobs matching your profile!")
+                
+                # Show top 10
+                print("\n🏆 Top 10 Matches:")
+                print("="*70)
+                for i, job in enumerate(matched_jobs[:10], 1):
+                    stars = "⭐" * (job['match_score'] // 20)
+                    print(f"\n{i}. {job['title']} at {job['company']}")
+                    print(f"   Match: {job['match_score']}% {stars}")
+                    print(f"   {job['url']}")
+                
+                # Save to CSV
+                csv_file = self.results_dir / "matched_jobs.csv"
+                csv_file.parent.mkdir(parents=True, exist_ok=True)
+                save_matches_to_csv(matched_jobs, csv_file)
+                
+                print(f"\n✅ All {len(matched_jobs)} matches saved to:")
+                print(f"   {csv_file}")
+                print("\n💡 Open in Excel/Google Sheets to track applications!")
+            else:
+                print("\n⚠️  No matches found in free job APIs")
+                print("   Showing aggregator links instead...")
+        except Exception as e:
+            print(f"\n⚠️  Smart matching error: {e}")
+            print("   Showing aggregator links instead...")
         
-        print("\n🔍 Searching for jobs...")
-        print("   This will search across:")
-        print("   ✅ LinkedIn Jobs (100+ companies)")
-        print("   ✅ Indeed (1000+ listings)")
-        print("   ✅ Glassdoor (500+ companies)")
-        print("   ✅ Wellfound (Startups)")
+        # Also show aggregator links
+        print("\n" + "="*70)
+        print("🌐 ADDITIONAL SEARCH - Job Aggregators")
+        print("="*70)
         
-        # Generate search URLs
+        print("\nSearch these sites for more jobs:")
+        
         role_encoded = quote(role)
-        location_encoded = quote(location)
+        location_encoded = quote("Remote")
         
-        print("\n📋 Job Search Links (Click to open):")
+        print("\n📋 Job Aggregator Links:")
         print(f"\n   LinkedIn:")
-        print(f"   https://www.linkedin.com/jobs/search/?keywords={role_encoded}&location={location_encoded}&f_TPR=r604800")
+        print(f"   https://www.linkedin.com/jobs/search/?keywords={role_encoded}&f_TPR=r604800")
         
         print(f"\n   Indeed:")
-        print(f"   https://www.indeed.com/jobs?q={role_encoded}&l={location_encoded}&fromage=7")
+        print(f"   https://www.indeed.com/jobs?q={role_encoded}&fromage=7")
         
         print(f"\n   Glassdoor:")
         print(f"   https://www.glassdoor.com/Job/jobs.htm?sc.keyword={role_encoded}")
@@ -482,22 +512,20 @@ class JobForgeAgent:
         print(f"\n   Naukri (India):")
         print(f"   https://www.naukri.com/{role.replace(' ', '-').lower()}-jobs")
         
-        # Save to file
+        # Save aggregator links
         results_file = self.results_dir / "job_search_links.txt"
         results_file.parent.mkdir(parents=True, exist_ok=True)
         
         with open(results_file, 'w') as f:
             f.write(f"Job Search Links for: {role}\n")
-            f.write(f"Location: {location}\n")
             f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n")
-            f.write(f"LinkedIn: https://www.linkedin.com/jobs/search/?keywords={role_encoded}&location={location_encoded}&f_TPR=r604800\n")
-            f.write(f"Indeed: https://www.indeed.com/jobs?q={role_encoded}&l={location_encoded}&fromage=7\n")
+            f.write(f"LinkedIn: https://www.linkedin.com/jobs/search/?keywords={role_encoded}&f_TPR=r604800\n")
+            f.write(f"Indeed: https://www.indeed.com/jobs?q={role_encoded}&fromage=7\n")
             f.write(f"Glassdoor: https://www.glassdoor.com/Job/jobs.htm?sc.keyword={role_encoded}\n")
             f.write(f"Wellfound: https://wellfound.com/jobs?query={role_encoded}\n")
             f.write(f"Naukri: https://www.naukri.com/{role.replace(' ', '-').lower()}-jobs\n")
         
-        print(f"\n✅ Links saved to: {results_file}")
-        print("\n💡 Tip: Open these links in your browser and start applying!")
+        print(f"\n✅ Aggregator links saved to: {results_file}")
         
     def show_company_links(self):
         """Show direct links to top company career pages"""
