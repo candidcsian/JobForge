@@ -436,6 +436,91 @@ class JobForgeAgent:
         print("   $ cd JobForge")
         print("   $ python3 jobforge_agent.py")
         
+    def search_jobs(self):
+        """Search for jobs and match to profile"""
+        print("\n" + "="*70)
+        print("🔍 STEP 9: Job Search & Matching")
+        print("="*70)
+        
+        print("\nNow let's find jobs that match your profile!")
+        print("\nWhat type of roles are you looking for?")
+        role = input("   (e.g., Senior QA Engineer, SDET, Software Engineer): ")
+        
+        print("\nPreferred location?")
+        location = input("   (e.g., Bangalore, Remote, Hybrid): ")
+        
+        print("\n🔍 Searching for jobs...")
+        print("   This will search across:")
+        print("   ✅ Top 53 companies (OpenAI, Google, Meta, Amazon, etc.)")
+        print("   ✅ Job aggregators (LinkedIn, Indeed, Glassdoor, Wellfound)")
+        
+        # Run job search
+        import subprocess
+        try:
+            # Search via aggregators (works immediately)
+            result = subprocess.run(
+                ['python3', 'jobforge.py', 'search', role, '--location', location],
+                cwd=self.base_dir,
+                capture_output=True,
+                text=True
+            )
+            
+            if result.returncode == 0:
+                print("\n✅ Job search completed!")
+                print(f"\n   Results saved to: {self.results_dir}/aggregators/")
+                print("\n   You can now:")
+                print("   1. Visit the job aggregator links")
+                print("   2. Apply directly on those platforms")
+                print("   3. Use your ATS-optimized resume")
+            else:
+                print("\n⚠️  Job search encountered an issue")
+                print("   You can search manually using:")
+                print(f"   cd ~/JobForge && python3 jobforge.py search '{role}' --location '{location}'")
+        except Exception as e:
+            print(f"\n⚠️  Could not run automated search: {e}")
+            print("   You can search manually later")
+        
+        print("\n📋 Job Search Links:")
+        print(f"   LinkedIn: https://www.linkedin.com/jobs/search/?keywords={role.replace(' ', '%20')}")
+        print(f"   Naukri: https://www.naukri.com/{role.replace(' ', '-').lower()}-jobs")
+        print(f"   Indeed: https://www.indeed.co.in/jobs?q={role.replace(' ', '+')}")
+        
+    def generate_action_sheet(self):
+        """Generate action sheet with job links"""
+        print("\n" + "="*70)
+        print("📊 STEP 10: Action Sheet Generation")
+        print("="*70)
+        
+        print("\nWould you like to generate an action sheet?")
+        print("(This creates a CSV with job details, LinkedIn links, and tracking columns)")
+        choice = input("\n   (yes/no): ").lower()
+        
+        if choice == 'yes':
+            print("\n⏳ Generating action sheet...")
+            try:
+                import subprocess
+                result = subprocess.run(
+                    ['python3', 'core/cli/action_sheet.py'],
+                    cwd=self.base_dir,
+                    capture_output=True,
+                    text=True
+                )
+                
+                if result.returncode == 0:
+                    print("✅ Action sheet created!")
+                    print(f"   Location: {self.results_dir}/matches/ACTION_SHEET.csv")
+                    print("\n   Open it in Excel/Google Sheets to:")
+                    print("   ✅ See all matched jobs")
+                    print("   ✅ Click LinkedIn referral links")
+                    print("   ✅ Track your applications")
+                else:
+                    print("⚠️  Action sheet generation skipped")
+                    print("   (Run job matching first)")
+            except Exception as e:
+                print(f"⚠️  Could not generate action sheet: {e}")
+        else:
+            print("\n⏭️  Skipping action sheet")
+    
     def run(self):
         """Main execution flow"""
         try:
@@ -447,6 +532,8 @@ class JobForgeAgent:
             self.create_ats_resume()
             self.optimize_linkedin()
             self.setup_job_portals()
+            self.search_jobs()  # NEW: Search for jobs
+            self.generate_action_sheet()  # NEW: Generate action sheet
             self.job_search_strategy()
             self.generate_summary()
             
