@@ -469,7 +469,12 @@ class JobForgeAgent:
                     stars = "⭐" * (job['match_score'] // 20)
                     print(f"\n{i}. {job['title']} at {job['company']}")
                     print(f"   Match: {job['match_score']}% {stars}")
-                    print(f"   {job['url']}")
+                    print(f"   Apply: {job['url']}")
+                    
+                    # Show LinkedIn contact link
+                    from discovery.free_job_apis import generate_linkedin_contact_url
+                    linkedin_url = generate_linkedin_contact_url(job['company'], job['title'])
+                    print(f"   Find referrals: {linkedin_url}")
                 
                 # Save to CSV
                 csv_file = self.results_dir / "matched_jobs.csv"
@@ -478,7 +483,17 @@ class JobForgeAgent:
                 
                 print(f"\n✅ All {len(matched_jobs)} matches saved to:")
                 print(f"   {csv_file}")
-                print("\n💡 Open in Excel/Google Sheets to track applications!")
+                print("\n💡 CSV includes:")
+                print("   • Match scores for each job")
+                print("   • Direct application links")
+                print("   • LinkedIn contact search links (find referrals!)")
+                print("   • Tracking columns (Applied, Status, Notes)")
+                print("\n🎯 STRATEGY:")
+                print("   1. Open CSV in Excel/Google Sheets")
+                print("   2. Click 'LinkedIn Contacts' link for each job")
+                print("   3. Connect with 2-3 employees at that company")
+                print("   4. Ask for referral before applying")
+                print("   5. Apply with referral = 5x better chance!")
             else:
                 print("\n⚠️  No matches found in free job APIs")
                 print("   Showing aggregator links instead...")

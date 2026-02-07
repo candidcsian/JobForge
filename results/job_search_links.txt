@@ -1,9 +1,8 @@
 Job Search Links for: Senior QA Engineer
-Location: Remote
-Generated: 2026-02-07 21:31
+Generated: 2026-02-07 21:50
 
-LinkedIn: https://www.linkedin.com/jobs/search/?keywords=Senior%20QA%20Engineer&location=Remote&f_TPR=r604800
-Indeed: https://www.indeed.com/jobs?q=Senior%20QA%20Engineer&l=Remote&fromage=7
+LinkedIn: https://www.linkedin.com/jobs/search/?keywords=Senior%20QA%20Engineer&f_TPR=r604800
+Indeed: https://www.indeed.com/jobs?q=Senior%20QA%20Engineer&fromage=7
 Glassdoor: https://www.glassdoor.com/Job/jobs.htm?sc.keyword=Senior%20QA%20Engineer
 Wellfound: https://wellfound.com/jobs?query=Senior%20QA%20Engineer
 Naukri: https://www.naukri.com/senior-qa-engineer-jobs

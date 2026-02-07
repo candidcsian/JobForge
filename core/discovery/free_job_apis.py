@@ -10,26 +10,49 @@ def fetch_remoteok_jobs(keywords=None):
     """Fetch jobs from RemoteOK API (free, no auth needed)."""
     try:
         url = "https://remoteok.com/api"
-        headers = {'User-Agent': 'JobForge/1.0'}
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
+        }
         
-        response = httpx.get(url, headers=headers, timeout=30)
-        jobs = response.json()[1:]  # First item is metadata
+        response = httpx.get(url, headers=headers, timeout=30, follow_redirects=True)
+        data = response.json()
+        
+        # Skip first item (metadata)
+        if isinstance(data, list) and len(data) > 0:
+            jobs = data[1:] if isinstance(data[0], dict) and 'legal' in str(data[0]) else data
+        else:
+            jobs = []
         
         # Filter by keywords if provided
         if keywords:
             kw_lower = keywords.lower()
-            jobs = [j for j in jobs if kw_lower in j.get('position', '').lower() 
-                    or kw_lower in j.get('description', '').lower()]
+            filtered = []
+            for j in jobs:
+                if not isinstance(j, dict):
+                    continue
+                title = str(j.get('position', '')).lower()
+                desc = str(j.get('description', '')).lower()
+                tags = ' '.join(str(t) for t in j.get('tags', [])).lower()
+                
+                if kw_lower in title or kw_lower in desc or kw_lower in tags:
+                    filtered.append(j)
+            jobs = filtered
         
-        return [{
-            'title': j.get('position'),
-            'company': j.get('company'),
-            'location': 'Remote',
-            'url': j.get('url'),
-            'description': j.get('description', ''),
-            'tags': j.get('tags', []),
-            'source': 'RemoteOK'
-        } for j in jobs[:100]]  # Limit to 100
+        result = []
+        for j in jobs[:100]:
+            if not isinstance(j, dict):
+                continue
+            result.append({
+                'title': j.get('position', 'Unknown'),
+                'company': j.get('company', 'Unknown'),
+                'location': 'Remote',
+                'url': j.get('url', ''),
+                'description': j.get('description', ''),
+                'tags': j.get('tags', []),
+                'source': 'RemoteOK'
+            })
+        
+        return result
     except Exception as e:
         print(f"   ⚠️  RemoteOK error: {e}")
         return []
@@ -39,27 +62,83 @@ def fetch_remotive_jobs(keywords=None):
     """Fetch jobs from Remotive API (free, no auth needed)."""
     try:
         url = "https://remotive.com/api/remote-jobs"
-        response = httpx.get(url, timeout=30)
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
+        }
+        response = httpx.get(url, headers=headers, timeout=30)
         data = response.json()
         jobs = data.get('jobs', [])
         
         # Filter by keywords
         if keywords:
             kw_lower = keywords.lower()
-            jobs = [j for j in jobs if kw_lower in j.get('title', '').lower() 
-                    or kw_lower in j.get('description', '').lower()]
+            filtered = []
+            for j in jobs:
+                title = str(j.get('title', '')).lower()
+                desc = str(j.get('description', '')).lower()
+                category = str(j.get('category', '')).lower()
+                
+                if kw_lower in title or kw_lower in desc or kw_lower in category:
+                    filtered.append(j)
+            jobs = filtered
         
-        return [{
-            'title': j.get('title'),
-            'company': j.get('company_name'),
-            'location': 'Remote',
-            'url': j.get('url'),
-            'description': j.get('description', ''),
-            'tags': j.get('tags', []),
-            'source': 'Remotive'
-        } for j in jobs[:100]]
+        result = []
+        for j in jobs[:100]:
+            result.append({
+                'title': j.get('title', 'Unknown'),
+                'company': j.get('company_name', 'Unknown'),
+                'location': 'Remote',
+                'url': j.get('url', ''),
+                'description': j.get('description', ''),
+                'tags': [j.get('category', '')],
+                'source': 'Remotive'
+            })
+        
+        return result
     except Exception as e:
         print(f"   ⚠️  Remotive error: {e}")
+        return []
+
+
+def fetch_arbeitnow_jobs(keywords=None):
+    """Fetch jobs from Arbeitnow API (free, no auth needed)."""
+    try:
+        url = "https://www.arbeitnow.com/api/job-board-api"
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
+        }
+        response = httpx.get(url, headers=headers, timeout=30)
+        data = response.json()
+        jobs = data.get('data', [])
+        
+        # Filter by keywords
+        if keywords:
+            kw_lower = keywords.lower()
+            filtered = []
+            for j in jobs:
+                title = str(j.get('title', '')).lower()
+                desc = str(j.get('description', '')).lower()
+                tags = ' '.join(str(t) for t in j.get('tags', [])).lower()
+                
+                if kw_lower in title or kw_lower in desc or kw_lower in tags:
+                    filtered.append(j)
+            jobs = filtered
+        
+        result = []
+        for j in jobs[:100]:
+            result.append({
+                'title': j.get('title', 'Unknown'),
+                'company': j.get('company_name', 'Unknown'),
+                'location': j.get('location', 'Remote'),
+                'url': j.get('url', ''),
+                'description': j.get('description', ''),
+                'tags': j.get('tags', []),
+                'source': 'Arbeitnow'
+            })
+        
+        return result
+    except Exception as e:
+        print(f"   ⚠️  Arbeitnow error: {e}")
         return []
 
 
@@ -118,15 +197,21 @@ def search_and_match_jobs(keywords, career_dir, min_score=40):
     print("\n🔍 Fetching jobs from free APIs...")
     print("   • RemoteOK (remote jobs)")
     print("   • Remotive (remote jobs)")
+    print("   • Arbeitnow (EU + remote jobs)")
     
-    # Fetch jobs
+    # Fetch jobs from multiple sources
     all_jobs = []
     all_jobs.extend(fetch_remoteok_jobs(keywords))
     all_jobs.extend(fetch_remotive_jobs(keywords))
+    all_jobs.extend(fetch_arbeitnow_jobs(keywords))
     
     print(f"\n✅ Found {len(all_jobs)} jobs")
     
     if not all_jobs:
+        print("\n⚠️  No jobs found. This could be because:")
+        print("   • APIs are rate-limited")
+        print("   • Keywords too specific")
+        print("   • Try broader terms like 'Engineer' or 'Developer'")
         return []
     
     # Extract user skills
@@ -151,25 +236,46 @@ def search_and_match_jobs(keywords, career_dir, min_score=40):
     return matched_jobs
 
 
+def generate_linkedin_contact_url(company, role):
+    """Generate LinkedIn search URL to find employees at company."""
+    from urllib.parse import quote
+    
+    # Clean company name
+    company_clean = company.replace('Inc.', '').replace('LLC', '').strip()
+    
+    # Generate search query
+    query = f"{role} {company_clean}"
+    query_encoded = quote(query)
+    
+    # LinkedIn people search URL
+    url = f"https://www.linkedin.com/search/results/people/?keywords={query_encoded}&origin=GLOBAL_SEARCH_HEADER"
+    
+    return url
+
+
 def save_matches_to_csv(jobs, output_file):
-    """Save matched jobs to CSV."""
+    """Save matched jobs to CSV with LinkedIn contact links."""
     import csv
     
     with open(output_file, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
         writer.writerow([
-            'Match %', 'Title', 'Company', 'Location', 'Source', 
-            'URL', 'Applied', 'Status', 'Notes'
+            'Match %', 'Title', 'Company', 'Location', 
+            'Apply URL', 'LinkedIn Contacts', 
+            'Applied', 'Status', 'Notes'
         ])
         
         for job in jobs:
+            # Generate LinkedIn contact search URL
+            linkedin_url = generate_linkedin_contact_url(job['company'], job['title'])
+            
             writer.writerow([
                 f"{job['match_score']}%",
                 job['title'],
                 job['company'],
                 job['location'],
-                job['source'],
                 job['url'],
+                linkedin_url,
                 '',  # Applied (user fills)
                 '',  # Status (user fills)
                 ''   # Notes (user fills)
