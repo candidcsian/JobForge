@@ -199,19 +199,32 @@ def search_and_match_jobs(keywords, career_dir, min_score=40):
     print("   • Remotive (remote jobs)")
     print("   • Arbeitnow (EU + remote jobs)")
     
-    # Fetch jobs from multiple sources
+    # Fetch ALL jobs first (don't filter by keywords yet)
+    # We'll match them against user profile instead
     all_jobs = []
-    all_jobs.extend(fetch_remoteok_jobs(keywords))
-    all_jobs.extend(fetch_remotive_jobs(keywords))
-    all_jobs.extend(fetch_arbeitnow_jobs(keywords))
+    
+    # Use broad terms to get more jobs
+    broad_terms = ['engineer', 'developer', 'software']
+    for term in broad_terms:
+        all_jobs.extend(fetch_remoteok_jobs(term))
+        all_jobs.extend(fetch_remotive_jobs(term))
+        all_jobs.extend(fetch_arbeitnow_jobs(term))
+    
+    # Remove duplicates based on URL
+    seen_urls = set()
+    unique_jobs = []
+    for job in all_jobs:
+        if job['url'] and job['url'] not in seen_urls:
+            seen_urls.add(job['url'])
+            unique_jobs.append(job)
+    
+    all_jobs = unique_jobs
     
     print(f"\n✅ Found {len(all_jobs)} jobs")
     
     if not all_jobs:
-        print("\n⚠️  No jobs found. This could be because:")
-        print("   • APIs are rate-limited")
-        print("   • Keywords too specific")
-        print("   • Try broader terms like 'Engineer' or 'Developer'")
+        print("\n⚠️  No jobs found. APIs may be rate-limited.")
+        print("   Try again in a few minutes.")
         return []
     
     # Extract user skills
