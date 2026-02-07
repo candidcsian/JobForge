@@ -416,25 +416,20 @@ class JobForgeAgent:
     def share_with_friends(self):
         """Information about sharing the tool"""
         print("\n" + "="*70)
-        print("🤝 Sharing JobForge with Friends")
+        print("🤝 Share JobForge with Friends")
         print("="*70)
         
-        print("\nYou can share this tool with friends!")
-        print("\n📦 To share:")
-        print("   1. Share the JobForge directory")
-        print("   2. They run: python3 jobforge_agent.py")
-        print("   3. Tool guides them through the same process")
+        print("\n📧 Send them this one command:")
+        print("\n   bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)")
         
-        print("\n🔒 Privacy:")
-        print("   ✅ Each user's data is stored separately")
-        print("   ✅ No data is shared between users")
-        print("   ✅ All data stays on their local machine")
+        print("\n🔗 Or share the GitHub link:")
+        print("   https://github.com/candidcsian/JobForge")
         
-        print("\n📧 Share Instructions:")
-        print("   Send them this command:")
-        print("   $ git clone <jobforge-repo>")
-        print("   $ cd JobForge")
-        print("   $ python3 jobforge_agent.py")
+        print("\n✅ That's it! They'll get:")
+        print("   • ATS-optimized resume builder")
+        print("   • LinkedIn profile optimizer")
+        print("   • Job search links (1000+ jobs)")
+        print("   • 100% private & free")
         
     def search_jobs(self):
         """Search for jobs and match to profile"""
