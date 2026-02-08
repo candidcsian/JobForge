@@ -423,91 +423,41 @@ class JobForgeAgent:
     def job_search_strategy(self):
         """Provide job search strategy"""
         print("\n" + "="*70)
-        print("🎯 STEP 8: Job Search Strategy")
+        print("🎯 Next Steps")
         print("="*70)
         
-        print("\nBased on your profile, here's your action plan:")
-        print("\n📅 WEEK 1:")
-        print("   - Apply to 20-30 jobs on Naukri")
-        print("   - Apply to 10-15 jobs on LinkedIn")
-        print("   - Connect with 10 recruiters")
-        print("   - Set up job alerts")
+        print("\n1. Open the CSV file")
+        print("2. Click LinkedIn links to find referrals")
+        print("3. Apply to top 20 matches this week")
+        print("4. Follow up after 3-5 days")
         
-        print("\n📅 WEEK 2-3:")
-        print("   - Continue applying (50+ total)")
-        print("   - Respond to recruiter messages")
-        print("   - Prepare for interviews")
-        print("   - Practice STAR stories")
-        
-        print("\n📅 WEEK 4:")
-        print("   - Interview rounds")
-        print("   - Negotiate offers")
-        print("   - Make decision")
-        
-        print("\n💡 PRO TIPS:")
-        print("   ✅ Apply within 24 hours of job posting")
-        print("   ✅ Customize resume for each application")
-        print("   ✅ Follow up with recruiters after 3-5 days")
-        print("   ✅ Keep track of applications in spreadsheet")
-        print("   ✅ Prepare 5-10 STAR stories for interviews")
+        print("\n" + "="*70)
         
     def generate_summary(self):
         """Generate summary of what was created"""
         print("\n" + "="*70)
-        print("🎉 CONGRATULATIONS! Setup Complete!")
+        print("✅ Setup Complete!")
         print("="*70)
         
-        print("\n📂 Files Created:")
-        print(f"   ✅ Master Resume: {self.career_dir}/master-resume.md")
-        print(f"   ✅ ATS Resume: {self.results_dir}/resumes/ATS_Resume.docx")
-        print(f"   ✅ LinkedIn Profile: {self.results_dir}/resumes/LinkedIn_Profile.md")
-        print(f"   ✅ Skills Matrix: {self.career_dir}/skills-matrix.md")
-        
-        print("\n✅ What's Ready:")
-        print("   ✅ Your master career profile (16+ years documented)")
-        print("   ✅ ATS-optimized resume for job applications")
-        print("   ✅ LinkedIn profile content (copy-paste ready)")
-        print("   ✅ Job portal setup instructions")
-        print("   ✅ Job search strategy and timeline")
-        
-        print("\n🚀 Next Steps:")
-        print("   1. Upload resume to Naukri (from mobile if needed)")
-        print("   2. Start applying to jobs (20-30 this week)")
-        print("   3. Connect with recruiters on LinkedIn")
-        print("   4. Set up job alerts on all portals")
-        print("   5. Prepare for interviews")
-        
-        print("\n📊 Expected Results:")
-        print("   Week 1: 5-10 recruiter calls")
-        print("   Week 2-3: 10-15 interviews")
-        print("   Week 4: 2-5 offers")
-        
-        print("\n💼 Salary Expectations:")
-        print("   Senior QA Engineer: ₹25-35 LPA")
-        print("   SDET II/III: ₹30-40 LPA")
-        print("   QA Lead: ₹40-60 LPA")
+        print(f"\n📂 Files created in: {self.results_dir}")
+        print(f"   • matched_jobs.csv (with LinkedIn contacts)")
+        print(f"   • ATS_Resume.docx")
         
         print("\n" + "="*70)
-        print("Good luck with your job search! 🍀")
-        print("="*70)
         
     def share_with_friends(self):
         """Information about sharing the tool"""
         print("\n" + "="*70)
-        print("🤝 Share JobForge with Friends")
+        print("🤝 Share JobForge")
         print("="*70)
         
-        print("\n📧 Send them this one command:")
-        print("\n   bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)")
+        print("\n📧 One command:")
+        print("   bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)")
         
-        print("\n🔗 Or share the GitHub link:")
+        print("\n🔗 GitHub:")
         print("   https://github.com/candidcsian/JobForge")
         
-        print("\n✅ That's it! They'll get:")
-        print("   • ATS-optimized resume builder")
-        print("   • LinkedIn profile optimizer")
-        print("   • Job search links (1000+ jobs)")
-        print("   • 100% private & free")
+        print("\n" + "="*70)
         
     def search_jobs(self):
         """Search for jobs and match to profile"""
@@ -538,40 +488,29 @@ class JobForgeAgent:
             matched_jobs = search_and_match_jobs(role, self.career_dir, min_score=25)
             
             if matched_jobs:
-                print(f"\n✨ Found {len(matched_jobs)} jobs matching your profile!")
+                print(f"\n✨ Found {len(matched_jobs)} matching jobs!\n")
                 
                 # Show top 10
-                print("\n🏆 Top 10 Matches:")
+                print("🏆 Top 10 Matches:")
                 print("="*70)
                 for i, job in enumerate(matched_jobs[:10], 1):
                     stars = "⭐" * (job['match_score'] // 20)
-                    print(f"\n{i}. {job['title']} at {job['company']}")
-                    print(f"   Match: {job['match_score']}% {stars}")
+                    print(f"\n{i}. {job['match_score']}% {stars} | {job['title']}")
+                    print(f"   Company: {job['company']}")
                     print(f"   Apply: {job['url']}")
-                    
-                    # Show LinkedIn contact link
-                    from discovery.free_job_apis import generate_linkedin_contact_url
-                    linkedin_url = generate_linkedin_contact_url(job['company'], job['title'])
-                    print(f"   Find referrals: {linkedin_url}")
                 
                 # Save to CSV
                 csv_file = self.results_dir / "matched_jobs.csv"
                 csv_file.parent.mkdir(parents=True, exist_ok=True)
                 save_matches_to_csv(matched_jobs, csv_file)
                 
-                print(f"\n✅ All {len(matched_jobs)} matches saved to:")
-                print(f"   {csv_file}")
-                print("\n💡 CSV includes:")
-                print("   • Match scores for each job")
-                print("   • Direct application links")
-                print("   • LinkedIn contact search links (find referrals!)")
-                print("   • Tracking columns (Applied, Status, Notes)")
-                print("\n🎯 STRATEGY:")
-                print("   1. Open CSV in Excel/Google Sheets")
-                print("   2. Click 'LinkedIn Contacts' link for each job")
-                print("   3. Connect with 2-3 employees at that company")
-                print("   4. Ask for referral before applying")
-                print("   5. Apply with referral = 5x better chance!")
+                print(f"\n" + "="*70)
+                print(f"✅ All {len(matched_jobs)} jobs saved to CSV")
+                print(f"📂 {csv_file}")
+                print("\n💡 Open CSV to see:")
+                print("   • LinkedIn contact links (find referrals)")
+                print("   • Application tracking columns")
+                print("="*70)
             else:
                 print("\n⚠️  No matches found in free job APIs")
                 print("   Showing aggregator links instead...")
@@ -581,55 +520,24 @@ class JobForgeAgent:
         
         # Also show aggregator links
         print("\n" + "="*70)
-        print("🌐 ADDITIONAL SEARCH - Job Aggregators")
+        print("🌐 More Jobs - Search Aggregators")
         print("="*70)
         
-        print("\nSearch these sites for more jobs:")
-        
         role_encoded = quote(role)
-        location_encoded = quote("Remote")
         
-        print("\n📋 Job Aggregator Links:")
-        print(f"\n   LinkedIn:")
-        print(f"   https://www.linkedin.com/jobs/search/?keywords={role_encoded}&f_TPR=r604800")
+        print(f"\n   LinkedIn: https://www.linkedin.com/jobs/search/?keywords={role_encoded}")
+        print(f"   Indeed: https://www.indeed.com/jobs?q={role_encoded}")
+        print(f"   Naukri: https://www.naukri.com/{role.replace(' ', '-').lower()}-jobs")
         
-        print(f"\n   Indeed:")
-        print(f"   https://www.indeed.com/jobs?q={role_encoded}&fromage=7")
-        
-        print(f"\n   Glassdoor:")
-        print(f"   https://www.glassdoor.com/Job/jobs.htm?sc.keyword={role_encoded}")
-        
-        print(f"\n   Wellfound (Startups):")
-        print(f"   https://wellfound.com/jobs?query={role_encoded}")
-        
-        print(f"\n   Naukri (India):")
-        print(f"   https://www.naukri.com/{role.replace(' ', '-').lower()}-jobs")
-        
-        # Save aggregator links
-        results_file = self.results_dir / "job_search_links.txt"
-        results_file.parent.mkdir(parents=True, exist_ok=True)
-        
-        with open(results_file, 'w') as f:
-            f.write(f"Job Search Links for: {role}\n")
-            f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n")
-            f.write(f"LinkedIn: https://www.linkedin.com/jobs/search/?keywords={role_encoded}&f_TPR=r604800\n")
-            f.write(f"Indeed: https://www.indeed.com/jobs?q={role_encoded}&fromage=7\n")
-            f.write(f"Glassdoor: https://www.glassdoor.com/Job/jobs.htm?sc.keyword={role_encoded}\n")
-            f.write(f"Wellfound: https://wellfound.com/jobs?query={role_encoded}\n")
-            f.write(f"Naukri: https://www.naukri.com/{role.replace(' ', '-').lower()}-jobs\n")
-        
-        print(f"\n✅ Aggregator links saved to: {results_file}")
+        print("\n" + "="*70)
         
     def show_company_links(self):
         """Show direct links to top company career pages"""
         print("\n" + "="*70)
-        print("🏢 STEP 10: Top Company Career Pages")
+        print("🏢 Top Companies")
         print("="*70)
         
-        print("\nDirect links to apply at top companies:")
-        
         companies = {
-            "OpenAI": "https://openai.com/careers/",
             "Google": "https://careers.google.com/",
             "Meta": "https://www.metacareers.com/",
             "Amazon": "https://www.amazon.jobs/",
@@ -637,31 +545,12 @@ class JobForgeAgent:
             "Apple": "https://www.apple.com/careers/",
             "Netflix": "https://jobs.netflix.com/",
             "Stripe": "https://stripe.com/jobs",
-            "Airbnb": "https://careers.airbnb.com/",
-            "Uber": "https://www.uber.com/careers/",
-            "Coinbase": "https://www.coinbase.com/careers",
-            "Databricks": "https://www.databricks.com/company/careers",
-            "Snowflake": "https://careers.snowflake.com/",
-            "Anthropic": "https://www.anthropic.com/careers",
-            "Spotify": "https://www.lifeatspotify.com/jobs"
         }
         
-        print("\n🔗 Top 15 Companies:")
-        for i, (company, url) in enumerate(companies.items(), 1):
-            print(f"   {i:2d}. {company:15s} {url}")
+        for company, url in companies.items():
+            print(f"   {company:12s} {url}")
         
-        # Save to file
-        links_file = self.results_dir / "company_career_pages.txt"
-        links_file.parent.mkdir(parents=True, exist_ok=True)
-        
-        with open(links_file, 'w') as f:
-            f.write("Top Company Career Pages\n")
-            f.write("="*70 + "\n\n")
-            for company, url in companies.items():
-                f.write(f"{company}: {url}\n")
-        
-        print(f"\n✅ Links saved to: {links_file}")
-        print("\n💡 Tip: Visit these pages and search for your role!")
+        print("\n" + "="*70)
     
     def run(self):
         """Main execution flow"""
