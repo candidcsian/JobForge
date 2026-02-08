@@ -252,14 +252,20 @@ class JobForgeAgent:
         print("="*70)
         
         print("\n⏳ Processing your career data...")
-        print("   - Extracting skills and technologies")
-        print("   - Identifying key achievements")
-        print("   - Calculating quantified metrics")
-        print("   - Organizing by time periods")
         
-        # This would call the actual resume building logic
-        print("\n✅ Master resume created!")
-        print(f"   Location: {self.career_dir}/master-resume.md")
+        # Import builder
+        import sys
+        sys.path.insert(0, str(self.base_dir / 'core'))
+        from resume.builder import build_master_resume_from_manual
+        
+        try:
+            output_file = self.career_dir / "master-resume.md"
+            result = build_master_resume_from_manual(self.user_data, output_file)
+            print(f"\n✅ Master resume created!")
+            print(f"   {result}")
+        except Exception as e:
+            print(f"\n⚠️  Could not build resume: {e}")
+            print("   Continuing with job search...")
         
     def create_ats_resume(self):
         """Create ATS-optimized resume"""
@@ -270,19 +276,26 @@ class JobForgeAgent:
         print("\nWhat type of roles are you targeting?")
         print("1. Senior QA Engineer / SDET")
         print("2. QA Lead / Manager")
-        print("3. Mobile QA Engineer")
-        print("4. Security QA Engineer")
-        print("5. Custom (I'll specify)")
+        print("3. Software Engineer")
+        print("4. Other")
         
-        role_choice = input("\nChoose (1-5): ")
+        role_choice = input("\nChoose (1-4): ").strip()
         
         print("\n⏳ Creating your ATS-optimized resume...")
-        print("   - Optimizing keywords for ATS")
-        print("   - Formatting for readability")
-        print("   - Highlighting quantified achievements")
         
-        print("\n✅ ATS resume created!")
-        print(f"   Location: {self.results_dir}/resumes/ATS_Resume.docx")
+        # Import builder
+        import sys
+        sys.path.insert(0, str(self.base_dir / 'core'))
+        from resume.builder import create_ats_resume_docx
+        
+        try:
+            output_file = self.results_dir / "resumes" / "ATS_Resume.docx"
+            result = create_ats_resume_docx(self.user_data, output_file)
+            print(f"\n✅ ATS resume created!")
+            print(f"   {result}")
+        except Exception as e:
+            print(f"\n⚠️  Could not create ATS resume: {e}")
+            print("   Continuing with job search...")
         
     def optimize_linkedin(self):
         """Guide LinkedIn profile optimization"""
