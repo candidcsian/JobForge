@@ -128,9 +128,87 @@ class JobForgeAgent:
             
             self.user_data['documents'] = documents
             print(f"\n✅ Collected {len(documents)} document(s)")
+            
+            # Check if any documents were provided
+            if len(documents) == 0:
+                print("\n⚠️  No documents provided!")
+                print("\nYou have two options:")
+                print("1. Go back and provide documents")
+                print("2. Enter your work history manually")
+                
+                choice = input("\nChoose (1/2): ").strip()
+                if choice == '1':
+                    print("\n❌ Please restart and provide your resume or work documents.")
+                    print("   Run: cd ~/JobForge && ./start_agent.sh")
+                    sys.exit(0)
+                else:
+                    print("\n📝 Let's collect your work history manually...")
+                    self.collect_manual_work_history()
         else:
             print("\n📝 No problem! I'll guide you through manual entry.")
             self.user_data['documents'] = []
+            self.collect_manual_work_history()
+    
+    def collect_manual_work_history(self):
+        """Collect work history manually from user"""
+        print("\n" + "="*70)
+        print("📝 Manual Work History Collection")
+        print("="*70)
+        
+        print("\nLet's collect your work history year by year.")
+        print("I'll ask about each company you've worked for.\n")
+        
+        companies = []
+        while True:
+            print(f"\n--- Company #{len(companies) + 1} ---")
+            company_name = input("Company name (or 'done' if finished): ").strip()
+            
+            if company_name.lower() == 'done':
+                break
+            
+            if not company_name:
+                continue
+            
+            role = input("Your role/title: ").strip()
+            start_date = input("Start date (e.g., Jan 2020): ").strip()
+            end_date = input("End date (e.g., Dec 2023 or 'Present'): ").strip()
+            
+            print("\nKey responsibilities (one per line, empty line to finish):")
+            responsibilities = []
+            while True:
+                resp = input("  - ").strip()
+                if not resp:
+                    break
+                responsibilities.append(resp)
+            
+            print("\nKey achievements (one per line, empty line to finish):")
+            achievements = []
+            while True:
+                ach = input("  - ").strip()
+                if not ach:
+                    break
+                achievements.append(ach)
+            
+            companies.append({
+                'company': company_name,
+                'role': role,
+                'start_date': start_date,
+                'end_date': end_date,
+                'responsibilities': responsibilities,
+                'achievements': achievements
+            })
+            
+            print(f"\n✅ Added {company_name}")
+        
+        if len(companies) == 0:
+            print("\n❌ No work history provided. Cannot proceed.")
+            print("   Please restart and provide either:")
+            print("   1. Resume documents, OR")
+            print("   2. Manual work history")
+            sys.exit(0)
+        
+        self.user_data['manual_history'] = companies
+        print(f"\n✅ Collected history for {len(companies)} companies")
         
     def ask_for_missing_years(self):
         """Identify and ask for missing years"""
