@@ -1,8 +1,8 @@
-# 🎯 JobForge + Resume Knowledge Integration
+# 🎯 JobBell + Resume Knowledge Integration
 
 ## What I Added
 
-Integrated patterns from **29 Amazon/AWS employee resumes** into JobForge's resume generation.
+Integrated patterns from **29 Amazon/AWS employee resumes** into JobBell's resume generation.
 
 ### Key Enhancements
 
@@ -64,10 +64,10 @@ Degree, University, Year
 ## Usage
 
 ```bash
-cd ~/JobForge
+cd ~/JobBell
 
 # Generate resumes with Amazon patterns
-python3 jobforge.py forge --top 10 --min-score 60
+python3 jobbell.py forge --top 10 --min-score 60
 
 # Resumes now use patterns from 29 Amazon/AWS employees
 ```
@@ -118,4 +118,4 @@ Strong expertise in Python, AWS, Kubernetes.
 
 ---
 
-**JobForge now generates resumes using proven patterns from 29 Amazon/AWS employees!** 🔨
+**JobBell now generates resumes using proven patterns from 29 Amazon/AWS employees!** 🔨

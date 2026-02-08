@@ -1,4 +1,4 @@
-# JobForge - Complete Workflow
+# JobBell - Complete Workflow
 
 ## 🎯 The Problem
 
@@ -8,11 +8,11 @@ Traditional job search:
 - ❌ No idea which jobs match your skills
 - ❌ Spend hours on low-probability applications
 
-## ✅ The JobForge Solution
+## ✅ The JobBell Solution
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                        JobForge                              │
+│                        JobBell                              │
 │         Forge Your Career Path with AI                      │
 └─────────────────────────────────────────────────────────────┘
 
@@ -67,7 +67,7 @@ Skills: Python, AWS, Docker, Kubernetes, TensorFlow
 
 ### One-Time Setup (5 minutes)
 ```bash
-cd ~/JobForge
+cd ~/JobBell
 ./setup.sh
 source venv/bin/activate
 
@@ -78,14 +78,14 @@ vim career/2024.md
 ### Weekly Routine (10 minutes)
 ```bash
 # Monday: Find new jobs
-python3 jobforge.py discover
+python3 jobbell.py discover
 
 # Tuesday: Review matches
-python3 jobforge.py match
-python3 jobforge.py show --top 20
+python3 jobbell.py match
+python3 jobbell.py show --top 20
 
 # Wednesday: Generate resumes
-python3 jobforge.py forge --top 10
+python3 jobbell.py forge --top 10
 
 # Thursday-Friday: Apply!
 # Use tailored resumes from results/resumes/
@@ -93,13 +93,13 @@ python3 jobforge.py forge --top 10
 
 ## 📈 Impact
 
-### Before JobForge
+### Before JobBell
 - ⏰ 10 hours/week searching
 - 📝 50 applications sent
 - 📊 2% response rate
 - 😫 Exhausting and demoralizing
 
-### After JobForge
+### After JobBell
 - ⏰ 1 hour/week (90% time saved)
 - 📝 10 targeted applications
 - 📊 15% response rate (7.5x better)
@@ -130,8 +130,8 @@ python3 jobforge.py forge --top 10
 ## 🔧 Technical Architecture
 
 ```
-JobForge/
-├── CLI Layer (jobforge.py)
+JobBell/
+├── CLI Layer (jobbell.py)
 │   └── Unified command interface
 │
 ├── Discovery Engine (core/discovery/)
@@ -150,7 +150,7 @@ JobForge/
     └── Batch generation
 ```
 
-## 🌟 What Makes JobForge Special
+## 🌟 What Makes JobBell Special
 
 1. **Combines 3 Tools Into 1**
    - Argus (discovery)
@@ -186,13 +186,13 @@ JobForge/
 ## 🚀 Get Started
 
 ```bash
-cd ~/JobForge
+cd ~/JobBell
 cat QUICKSTART.md    # Quick start guide
 cat README.md        # Full documentation
 cat ARCHITECTURE.md  # Technical details
 
 # Test it now
-python3 jobforge.py match
+python3 jobbell.py match
 ```
 
 ## 🎯 Next Steps
@@ -214,4 +214,4 @@ python3 jobforge.py match
 
 ---
 
-**JobForge - Stop searching. Start forging.** 🔨
+**JobBell - Stop searching. Start forging.** 🔨

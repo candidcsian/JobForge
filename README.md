@@ -1,11 +1,11 @@
-# JobForge - Smart Job Search Assistant
+# JobBell - Smart Job Search Assistant
 
 **Find jobs that match YOUR skills. Get referral contacts. Land interviews faster.**
 
 ## 🚀 One-Command Install
 
 ```bash
-bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/jobbell_onecommand.sh)
 ```
 
 That's it! No setup, no configuration.
@@ -54,7 +54,7 @@ That's it! No setup, no configuration.
    Apply: https://coinbase.com/careers/...
 
 ✅ All 58 jobs saved to CSV
-📂 ~/JobForge/results/matched_jobs.csv
+📂 ~/JobBell/results/matched_jobs.csv
 
 💡 Open CSV to see:
    • LinkedIn contact links (find referrals)
@@ -72,11 +72,11 @@ That's it! No setup, no configuration.
 
 ---
 
-## 💡 Why JobForge?
+## 💡 Why JobBell?
 
 ❌ **Old way:** Browse 100s of jobs manually, apply blindly, low response rate
 
-✅ **JobForge way:** Get pre-matched jobs, find referrals, apply strategically
+✅ **JobBell way:** Get pre-matched jobs, find referrals, apply strategically
 
 **Result:** More interviews, less time wasted
 
@@ -103,7 +103,7 @@ That's it! No setup, no configuration.
 ## 🚀 Get Started
 
 ```bash
-bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/jobbell_onecommand.sh)
 ```
 
 **Questions?** Open an issue on GitHub

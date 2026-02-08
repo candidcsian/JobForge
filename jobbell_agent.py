@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-JobForge Interactive Agent - Resume Builder & Job Search Assistant
+JobBell Interactive Agent - Resume Builder & Job Search Assistant
 
 This agent guides users through:
 1. Career data collection (year by year)
@@ -10,16 +10,16 @@ This agent guides users through:
 5. Job search and application tracking
 
 Usage:
-    python3 jobforge_agent.py
+    python3 jobbell_agent.py
 """
 
 import os
 import sys
 from pathlib import Path
 
-class JobForgeAgent:
+class JobBellAgent:
     def __init__(self):
-        self.base_dir = Path.home() / "JobForge"
+        self.base_dir = Path.home() / "JobBell"
         self.career_dir = self.base_dir / "career"
         self.results_dir = self.base_dir / "results"
         self.user_data = {}
@@ -27,7 +27,7 @@ class JobForgeAgent:
     def welcome(self):
         """Welcome message and introduction"""
         print("\n" + "="*70)
-        print("🚀 Welcome to JobForge - Your AI Career Assistant!")
+        print("🚀 Welcome to JobBell - Your AI Career Assistant!")
         print("="*70)
         print("\nI'll help you:")
         print("  ✅ Build your master resume from career history")
@@ -139,7 +139,7 @@ class JobForgeAgent:
                 choice = input("\nChoose (1/2): ").strip()
                 if choice == '1':
                     print("\n❌ Please restart and provide your resume or work documents.")
-                    print("   Run: cd ~/JobForge && ./start_agent.sh")
+                    print("   Run: cd ~/JobBell && ./start_agent.sh")
                     sys.exit(0)
                 else:
                     print("\n📝 Let's collect your work history manually...")
@@ -461,14 +461,14 @@ class JobForgeAgent:
     def share_with_friends(self):
         """Information about sharing the tool"""
         print("\n" + "="*70)
-        print("🤝 Share JobForge")
+        print("🤝 Share JobBell")
         print("="*70)
         
         print("\n📧 One command:")
-        print("   bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)")
+        print("   bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/jobbell_onecommand.sh)")
         
         print("\n🔗 GitHub:")
-        print("   https://github.com/candidcsian/JobForge")
+        print("   https://github.com/candidcsian/JobBell")
         
         print("\n" + "="*70)
         
@@ -596,7 +596,7 @@ class JobForgeAgent:
 
 def main():
     """Entry point"""
-    agent = JobForgeAgent()
+    agent = JobBellAgent()
     agent.run()
 
 if __name__ == "__main__":

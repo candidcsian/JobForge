@@ -1,9 +1,9 @@
 #!/bin/bash
-# JobForge - One-Command Installer & Runner
+# JobBell - One-Command Installer & Runner
 # This script downloads itself and runs locally to preserve stdin
 
-SCRIPT_URL="https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_run.sh"
-LOCAL_SCRIPT="/tmp/jobforge_run_$$.sh"
+SCRIPT_URL="https://raw.githubusercontent.com/candidcsian/JobBell/main/jobbell_run.sh"
+LOCAL_SCRIPT="/tmp/jobbell_run_$$.sh"
 
 # Download the actual script
 curl -sSL "$SCRIPT_URL" -o "$LOCAL_SCRIPT"

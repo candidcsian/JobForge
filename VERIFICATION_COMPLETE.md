@@ -1,4 +1,4 @@
-# ✅ JobForge - Ready to Share!
+# ✅ JobBell - Ready to Share!
 
 **Verified:** Sunday, Feb 8, 2026
 
@@ -34,7 +34,7 @@
 
 **One command:**
 ```bash
-bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/jobbell_onecommand.sh)
 ```
 
 **Verified:** Downloads, installs, runs successfully
@@ -148,7 +148,7 @@ bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/job
 
 **Share this:**
 ```
-🚀 Built JobForge - helps you find jobs that match YOUR skills!
+🚀 Built JobBell - helps you find jobs that match YOUR skills!
 
 ✅ Fetches 100+ jobs
 ✅ Matches to your profile
@@ -156,9 +156,9 @@ bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/job
 ✅ 100% free & private
 
 One command:
-bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/jobbell_onecommand.sh)
 
-GitHub: https://github.com/candidcsian/JobForge
+GitHub: https://github.com/candidcsian/JobBell
 
 Try it and let me know what you think! 🙏
 ```
@@ -167,7 +167,7 @@ Try it and let me know what you think! 🙏
 
 ## 📞 Support
 
-- GitHub Issues: https://github.com/candidcsian/JobForge/issues
+- GitHub Issues: https://github.com/candidcsian/JobBell/issues
 - Email: (add your email)
 - Twitter: (add your handle)
 

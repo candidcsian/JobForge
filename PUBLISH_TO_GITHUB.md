@@ -1,4 +1,4 @@
-# Publishing JobForge to GitHub - Step by Step Guide
+# Publishing JobBell to GitHub - Step by Step Guide
 
 ## 🎯 What We'll Do
 
@@ -21,7 +21,7 @@ Your `.gitignore` is configured to exclude:
 ### Check what will be committed:
 
 ```bash
-cd ~/JobForge
+cd ~/JobBell
 git status
 ```
 
@@ -31,7 +31,7 @@ git status
 - `results/resumes/LinkedIn_Profile.md`
 
 **Should see**:
-- `jobforge_agent.py`
+- `jobbell_agent.py`
 - `README_GITHUB.md`
 - `core/` directory
 - Documentation files
@@ -43,7 +43,7 @@ git status
 ### 2.1 Copy GitHub README
 
 ```bash
-cd ~/JobForge
+cd ~/JobBell
 cp README_GITHUB.md README.md
 ```
 
@@ -64,7 +64,7 @@ Verify no sensitive files are included!
 ### 2.4 Commit
 
 ```bash
-git commit -m "Initial commit: JobForge - AI-Powered Career Assistant
+git commit -m "Initial commit: JobBell - AI-Powered Career Assistant
 
 Features:
 - Interactive agent for resume building
@@ -83,7 +83,7 @@ All user data stays private (excluded from git)"
 ### Option A: Via GitHub Website (Easier)
 
 1. Go to: https://github.com/new
-2. **Repository name**: `JobForge`
+2. **Repository name**: `JobBell`
 3. **Description**: `AI-Powered Career Assistant - Build Your Perfect Resume in 2 Hours`
 4. **Visibility**: 
    - ✅ **Public** (so friends can access)
@@ -94,7 +94,7 @@ All user data stays private (excluded from git)"
 ### Option B: Via GitHub CLI (If installed)
 
 ```bash
-gh repo create JobForge --public --description "AI-Powered Career Assistant"
+gh repo create JobBell --public --description "AI-Powered Career Assistant"
 ```
 
 ---
@@ -104,10 +104,10 @@ gh repo create JobForge --public --description "AI-Powered Career Assistant"
 After creating the repository, GitHub will show you commands. Use these:
 
 ```bash
-cd ~/JobForge
+cd ~/JobBell
 
 # Add remote (replace YOUR_USERNAME with your GitHub username)
-git remote add origin https://github.com/YOUR_USERNAME/JobForge.git
+git remote add origin https://github.com/YOUR_USERNAME/JobBell.git
 
 # Push to GitHub
 git branch -M main
@@ -116,7 +116,7 @@ git push -u origin main
 
 **Example** (if your username is `senthilkumar`):
 ```bash
-git remote add origin https://github.com/senthilkumar/JobForge.git
+git remote add origin https://github.com/senthilkumar/JobBell.git
 git branch -M main
 git push -u origin main
 ```
@@ -125,7 +125,7 @@ git push -u origin main
 
 ## ✅ Step 5: Verify on GitHub
 
-1. Go to: `https://github.com/YOUR_USERNAME/JobForge`
+1. Go to: `https://github.com/YOUR_USERNAME/JobBell`
 2. Check that:
    - ✅ README.md is displayed
    - ✅ Code files are there
@@ -141,10 +141,10 @@ git push -u origin main
 
 Send them:
 ```
-Hey! I built this tool called JobForge that helped me create my 
+Hey! I built this tool called JobBell that helped me create my 
 resume and optimize my LinkedIn in just 2 hours.
 
-Check it out: https://github.com/YOUR_USERNAME/JobForge
+Check it out: https://github.com/YOUR_USERNAME/JobBell
 
 To use it:
 1. Clone the repo
@@ -159,13 +159,13 @@ Let me know if you need help!
 ### Option 2: Share Installation Instructions
 
 ```
-# Install JobForge
+# Install JobBell
 
 1. Open Terminal
 
 2. Clone the repository:
-   git clone https://github.com/YOUR_USERNAME/JobForge.git
-   cd JobForge
+   git clone https://github.com/YOUR_USERNAME/JobBell.git
+   cd JobBell
 
 3. Run the agent:
    ./start_agent.sh
@@ -185,7 +185,7 @@ Takes 1-2 hours total. You'll get:
 When you make changes:
 
 ```bash
-cd ~/JobForge
+cd ~/JobBell
 
 # Check what changed
 git status
@@ -231,7 +231,7 @@ Already included: MIT License (allows anyone to use)
 ### Add a .github folder
 
 ```bash
-mkdir -p ~/JobForge/.github
+mkdir -p ~/JobBell/.github
 ```
 
 Create issue templates, PR templates, etc. (optional)
@@ -243,7 +243,7 @@ Create issue templates, PR templates, etc. (optional)
 ### On LinkedIn
 
 ```
-🚀 Excited to share: I built an open-source tool called JobForge!
+🚀 Excited to share: I built an open-source tool called JobBell!
 
 It helps you:
 ✅ Build ATS-optimized resumes
@@ -253,7 +253,7 @@ It helps you:
 
 All in 2 hours, completely private (data stays on your machine).
 
-Check it out: https://github.com/YOUR_USERNAME/JobForge
+Check it out: https://github.com/YOUR_USERNAME/JobBell
 
 Free and open source! ⭐ Star if you find it useful!
 
@@ -263,7 +263,7 @@ Free and open source! ⭐ Star if you find it useful!
 ### On Twitter/X
 
 ```
-Built JobForge 🚀 - an AI-powered career assistant
+Built JobBell 🚀 - an AI-powered career assistant
 
 ✅ Build resume from career history
 ✅ ATS-optimized output
@@ -272,7 +272,7 @@ Built JobForge 🚀 - an AI-powered career assistant
 
 Free & open source!
 
-https://github.com/YOUR_USERNAME/JobForge
+https://github.com/YOUR_USERNAME/JobBell
 
 #OpenSource #JobSearch #Python
 ```
@@ -285,7 +285,7 @@ https://github.com/YOUR_USERNAME/JobForge
 
 ```bash
 git remote remove origin
-git remote add origin https://github.com/YOUR_USERNAME/JobForge.git
+git remote add origin https://github.com/YOUR_USERNAME/JobBell.git
 ```
 
 ### Error: "Permission denied"
@@ -328,16 +328,16 @@ git push
 
 Already in README:
 ```markdown
-[![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/JobForge.svg)](https://github.com/YOUR_USERNAME/JobForge/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/JobBell.svg)](https://github.com/YOUR_USERNAME/JobBell/stargazers)
 ```
 
 ---
 
 ## 🎉 Success!
 
-Your JobForge is now on GitHub!
+Your JobBell is now on GitHub!
 
-**Repository URL**: `https://github.com/YOUR_USERNAME/JobForge`
+**Repository URL**: `https://github.com/YOUR_USERNAME/JobBell`
 
 **Share it with**:
 - Friends looking for jobs

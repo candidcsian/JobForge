@@ -1,8 +1,8 @@
-# JobForge 🚀
+# JobBell 🚀
 
 **AI-Powered Career Assistant - Build Your Perfect Resume in 2 Hours**
 
-JobForge is an interactive tool that helps you build ATS-optimized resumes, optimize your LinkedIn profile, and land your dream job.
+JobBell is an interactive tool that helps you build ATS-optimized resumes, optimize your LinkedIn profile, and land your dream job.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
@@ -35,11 +35,11 @@ JobForge is an interactive tool that helps you build ATS-optimized resumes, opti
 
 **macOS / Linux:**
 ```bash
-bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/jobbell_onecommand.sh)
 ```
 
 **That's it!** Just one command to:
-- ✅ Download JobForge
+- ✅ Download JobBell
 - ✅ Install dependencies
 - ✅ Start the interactive agent
 - ✅ Build your resume
@@ -48,8 +48,8 @@ bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/job
 
 ```bash
 # Clone the repository
-git clone https://github.com/candidcsian/JobForge.git
-cd JobForge
+git clone https://github.com/candidcsian/JobBell.git
+cd JobBell
 
 # Run the agent
 ./start_agent.sh
@@ -58,10 +58,10 @@ cd JobForge
 ### Windows
 
 ```powershell
-# Download ZIP from: https://github.com/candidcsian/JobForge
+# Download ZIP from: https://github.com/candidcsian/JobBell
 # Extract and run:
-cd JobForge
-python jobforge_agent.py
+cd JobBell
+python jobbell_agent.py
 ```
 
 ---
@@ -104,7 +104,7 @@ python jobforge_agent.py
 ./start_agent.sh
 
 # Or directly
-python3 jobforge_agent.py
+python3 jobbell_agent.py
 ```
 
 The agent will ask you questions about:
@@ -117,13 +117,13 @@ The agent will ask you questions about:
 
 ```bash
 # Generate resume from existing profile
-python3 jobforge.py forge --career-profile master
+python3 jobbell.py forge --career-profile master
 
 # Match jobs to your profile
-python3 jobforge.py match
+python3 jobbell.py match
 
 # Search for jobs
-python3 jobforge.py search "Senior QA Engineer"
+python3 jobbell.py search "Senior QA Engineer"
 
 # Generate action sheet
 python3 core/cli/action_sheet.py
@@ -134,7 +134,7 @@ python3 core/cli/action_sheet.py
 ## 📂 What Gets Created
 
 ```
-~/JobForge/
+~/JobBell/
 ├── career/
 │   ├── [name]-master.md           # Master career profile
 │   ├── [name]-skills-matrix.md    # Skills with proficiency
@@ -146,7 +146,7 @@ python3 core/cli/action_sheet.py
 │       ├── [Name]_ATS_Resume.pdf  # PDF version
 │       └── LinkedIn_Profile.md     # Copy-paste to LinkedIn
 │
-└── jobforge_agent.py              # The interactive agent
+└── jobbell_agent.py              # The interactive agent
 ```
 
 ---
@@ -199,28 +199,28 @@ python3 core/cli/action_sheet.py
 ### Job Discovery
 ```bash
 # Discover jobs from top 53 companies
-python3 jobforge.py discover
+python3 jobbell.py discover
 
 # Search all companies via aggregators
-python3 jobforge.py search "Machine Learning Engineer" --location "Remote"
+python3 jobbell.py search "Machine Learning Engineer" --location "Remote"
 ```
 
 ### Job Matching
 ```bash
 # Match jobs to your profile
-python3 jobforge.py match --career-dir career
+python3 jobbell.py match --career-dir career
 
 # Show top matches
-python3 jobforge.py show --top 10
+python3 jobbell.py show --top 10
 ```
 
 ### Resume Generation
 ```bash
 # Generate tailored resumes
-python3 jobforge.py forge --top 10
+python3 jobbell.py forge --top 10
 
 # Export to different formats
-python3 jobforge.py export --format pdf
+python3 jobbell.py export --format pdf
 ```
 
 ### Action Sheet
@@ -268,14 +268,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Support
 
-- **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/JobForge/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/YOUR_USERNAME/JobForge/discussions)
+- **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/JobBell/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/YOUR_USERNAME/JobBell/discussions)
 
 ---
 
 ## 🌟 Star History
 
-If JobForge helped you land a job, please star the repository! ⭐
+If JobBell helped you land a job, please star the repository! ⭐
 
 ---
 
@@ -326,8 +326,8 @@ If JobForge helped you land a job, please star the repository! ⭐
 
 ```bash
 # Get started now
-git clone https://github.com/YOUR_USERNAME/JobForge.git
-cd JobForge
+git clone https://github.com/YOUR_USERNAME/JobBell.git
+cd JobBell
 ./start_agent.sh
 ```
 

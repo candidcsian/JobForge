@@ -2,16 +2,16 @@
 
 ## Two Approaches
 
-### Approach 1: JobForge Direct (53 Companies)
+### Approach 1: JobBell Direct (53 Companies)
 ```bash
-python3 jobforge.py discover
+python3 jobbell.py discover
 ```
 **Pros**: Automated, structured data, ready for matching
 **Cons**: Limited to 53 pre-configured companies
 
 ### Approach 2: Job Aggregators (ALL Companies)
 ```bash
-python3 jobforge.py search "Machine Learning Engineer" --location "Remote"
+python3 jobbell.py search "Machine Learning Engineer" --location "Remote"
 ```
 **Pros**: Searches ALL companies, thousands of jobs
 **Cons**: Manual browsing required
@@ -21,13 +21,13 @@ python3 jobforge.py search "Machine Learning Engineer" --location "Remote"
 ### Quick Command
 
 ```bash
-cd ~/JobForge
+cd ~/JobBell
 source venv/bin/activate
 
 # Search by role and location
-python3 jobforge.py search "Software Engineer" --location "Remote"
-python3 jobforge.py search "Data Scientist" --location "San Francisco"
-python3 jobforge.py search "ML Engineer" --location "New York"
+python3 jobbell.py search "Software Engineer" --location "Remote"
+python3 jobbell.py search "Data Scientist" --location "San Francisco"
+python3 jobbell.py search "ML Engineer" --location "New York"
 ```
 
 ### What You Get
@@ -60,7 +60,7 @@ python3 jobforge.py search "ML Engineer" --location "New York"
 
 ### Step 1: Search Aggregators (ALL Companies)
 ```bash
-python3 jobforge.py search "ML Engineer" --location "Remote"
+python3 jobbell.py search "ML Engineer" --location "Remote"
 ```
 
 ### Step 2: Browse Results
@@ -68,7 +68,7 @@ python3 jobforge.py search "ML Engineer" --location "Remote"
 - Apply filters (date, remote, experience)
 - Save interesting companies/jobs
 
-### Step 3: Add Companies to JobForge
+### Step 3: Add Companies to JobBell
 Found interesting companies? Add them:
 
 ```bash
@@ -80,36 +80,36 @@ vim config/companies.yaml
   ats_type: greenhouse
 ```
 
-### Step 4: Run JobForge Discovery
+### Step 4: Run JobBell Discovery
 ```bash
-python3 jobforge.py discover --companies "NewCompany"
+python3 jobbell.py discover --companies "NewCompany"
 ```
 
 ### Step 5: Find Employees & Get Referrals
 ```bash
-python3 jobforge.py referral --top 10
+python3 jobbell.py referral --top 10
 ```
 
 ## Location-Based Search
 
 ### Remote Jobs
 ```bash
-python3 jobforge.py search "Software Engineer" --location "Remote"
+python3 jobbell.py search "Software Engineer" --location "Remote"
 ```
 
 ### Specific City
 ```bash
-python3 jobforge.py search "Data Scientist" --location "San Francisco"
-python3 jobforge.py search "ML Engineer" --location "New York"
-python3 jobforge.py search "Backend Engineer" --location "Seattle"
+python3 jobbell.py search "Data Scientist" --location "San Francisco"
+python3 jobbell.py search "ML Engineer" --location "New York"
+python3 jobbell.py search "Backend Engineer" --location "Seattle"
 ```
 
 ### Multiple Locations
 Run multiple searches:
 ```bash
-python3 jobforge.py search "SWE" --location "Remote"
-python3 jobforge.py search "SWE" --location "California"
-python3 jobforge.py search "SWE" --location "New York"
+python3 jobbell.py search "SWE" --location "Remote"
+python3 jobbell.py search "SWE" --location "California"
+python3 jobbell.py search "SWE" --location "New York"
 ```
 
 ## Job Aggregator Comparison
@@ -126,14 +126,14 @@ python3 jobforge.py search "SWE" --location "New York"
 
 ### 1. Start with Aggregators (Broad Search)
 ```bash
-python3 jobforge.py search "ML Engineer" --location "Remote"
+python3 jobbell.py search "ML Engineer" --location "Remote"
 # → Find 1000+ jobs across ALL companies
 ```
 
 ### 2. Identify Top Companies
 Browse results, note companies you like:
-- OpenAI, Anthropic, Scale AI (already in JobForge)
-- NewStartup1, NewStartup2 (not in JobForge)
+- OpenAI, Anthropic, Scale AI (already in JobBell)
+- NewStartup1, NewStartup2 (not in JobBell)
 
 ### 3. Add New Companies
 ```bash
@@ -143,15 +143,15 @@ vim config/companies.yaml
 
 ### 4. Run Targeted Discovery
 ```bash
-python3 jobforge.py discover
+python3 jobbell.py discover
 # → Now searches 55 companies (53 + 2 new)
 ```
 
 ### 5. Match & Apply
 ```bash
-python3 jobforge.py match
-python3 jobforge.py referral --top 10
-python3 jobforge.py forge --top 10
+python3 jobbell.py match
+python3 jobbell.py referral --top 10
+python3 jobbell.py forge --top 10
 ```
 
 ## Example: Complete Search
@@ -160,13 +160,13 @@ python3 jobforge.py forge --top 10
 
 ```bash
 # Step 1: Search ALL companies
-python3 jobforge.py search "Machine Learning Engineer" --location "Remote"
+python3 jobbell.py search "Machine Learning Engineer" --location "Remote"
 
 # Step 2: Open all 5 aggregator links
 # → Found 500+ jobs
 # → Noted 10 interesting companies
 
-# Step 3: Check which are already in JobForge
+# Step 3: Check which are already in JobBell
 grep "name:" config/companies.yaml
 # → 5 already there (OpenAI, Anthropic, etc.)
 # → 5 new (Hugging Face, Cohere, etc.)
@@ -176,19 +176,19 @@ vim config/companies.yaml
 # Added Hugging Face, Cohere, etc.
 
 # Step 5: Run discovery on all
-python3 jobforge.py discover
+python3 jobbell.py discover
 # → 287 jobs from 58 companies
 
 # Step 6: Match to profile
-python3 jobforge.py match
+python3 jobbell.py match
 # → 95 matches
 
 # Step 7: Find employees
-python3 jobforge.py referral --top 10
+python3 jobbell.py referral --top 10
 # → LinkedIn links for top 10
 
 # Step 8: Generate resumes
-python3 jobforge.py forge --top 10
+python3 jobbell.py forge --top 10
 # → 10 tailored resumes
 
 # Result: 10 high-quality applications with referrals
@@ -201,7 +201,7 @@ python3 jobforge.py forge --top 10
 - See salary ranges
 - Read company reviews
 
-### 2. Use JobForge for Automation
+### 2. Use JobBell for Automation
 - Automated crawling
 - Smart matching
 - Referral finding
@@ -209,7 +209,7 @@ python3 jobforge.py forge --top 10
 
 ### 3. Best of Both Worlds
 - Aggregators: Broad search (1000+ jobs)
-- JobForge: Deep search (specific companies)
+- JobBell: Deep search (specific companies)
 - Combine for maximum coverage
 
 ## Filters to Use on Aggregators
@@ -242,18 +242,18 @@ python3 jobforge.py forge --top 10
 
 **For 53 Companies (Automated)**:
 ```bash
-python3 jobforge.py discover
+python3 jobbell.py discover
 ```
 
 **For ALL Companies (Manual)**:
 ```bash
-python3 jobforge.py search "Your Role" --location "Your Location"
+python3 jobbell.py search "Your Role" --location "Your Location"
 ```
 
 **Best Strategy**: Use both!
 1. Search aggregators for discovery
-2. Add interesting companies to JobForge
-3. Let JobForge automate the rest
+2. Add interesting companies to JobBell
+3. Let JobBell automate the rest
 
 ---
 

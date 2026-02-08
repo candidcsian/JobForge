@@ -1,8 +1,8 @@
-# ✅ JobForge Discovery Integration Complete!
+# ✅ JobBell Discovery Integration Complete!
 
 ## What Was Done
 
-Integrated **Argus job discovery engine** into JobForge.
+Integrated **Argus job discovery engine** into JobBell.
 
 ### Files Modified
 
@@ -12,7 +12,7 @@ Integrated **Argus job discovery engine** into JobForge.
    - Orchestrator
 
 2. **Updated orchestrator.py**
-   - Integrated with JobForge CLI
+   - Integrated with JobBell CLI
    - Added error handling
    - Fixed fetcher initialization
 
@@ -24,14 +24,14 @@ Integrated **Argus job discovery engine** into JobForge.
 ## How It Works Now
 
 ```bash
-cd ~/JobForge
+cd ~/JobBell
 source venv/bin/activate
 
 # Discover jobs from all companies
-python3 jobforge.py discover
+python3 jobbell.py discover
 
 # Or specific companies
-python3 jobforge.py discover --companies "OpenAI,Anthropic,Google"
+python3 jobbell.py discover --companies "OpenAI,Anthropic,Google"
 ```
 
 ### What Happens
@@ -45,21 +45,21 @@ python3 jobforge.py discover --companies "OpenAI,Anthropic,Google"
 
 ```bash
 # Step 1: Discover jobs (NEW!)
-python3 jobforge.py discover
+python3 jobbell.py discover
 # Output: 287 jobs from 50+ companies
 
 # Step 2: Match to your profile
-python3 jobforge.py match
+python3 jobbell.py match
 # Output: 95 jobs scored 60%+
 
 # Step 3: View top matches
-python3 jobforge.py show --top 20
+python3 jobbell.py show --top 20
 
 # Step 4: Generate resumes
-python3 jobforge.py forge --top 10
+python3 jobbell.py forge --top 10
 
 # Step 5: Export for tracking
-python3 jobforge.py export --output my-jobs.csv
+python3 jobbell.py export --output my-jobs.csv
 ```
 
 ## Supported Job Boards
@@ -90,11 +90,11 @@ python3 jobforge.py export --output my-jobs.csv
 
 Always activate virtual environment first:
 ```bash
-cd ~/JobForge
+cd ~/JobBell
 source venv/bin/activate
-python3 jobforge.py discover
+python3 jobbell.py discover
 ```
 
 ---
 
-**JobForge now has end-to-end job search automation!** 🔨
+**JobBell now has end-to-end job search automation!** 🔨

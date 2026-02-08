@@ -11,7 +11,7 @@ Just open Terminal (nothing else needed!)
 Copy and paste this:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
 ```
 
 Press Enter.
@@ -20,7 +20,7 @@ Press Enter.
 
 You should see:
 ```
-🚀 JobForge - AI-Powered Career Assistant
+🚀 JobBell - AI-Powered Career Assistant
 ==========================================
 
 📍 Detected: Mac
@@ -28,17 +28,17 @@ You should see:
 🔍 Checking Python...
 ✅ Python 3.x found
 
-📥 Downloading JobForge...
+📥 Downloading JobBell...
 ✅ Downloaded!
 
 🔧 Setting up environment...
 📦 Installing dependencies...
 ✅ Setup complete!
 
-🎯 Starting JobForge Agent...
+🎯 Starting JobBell Agent...
 
 ======================================================================
-🚀 Welcome to JobForge - Your AI Career Assistant!
+🚀 Welcome to JobBell - Your AI Career Assistant!
 ======================================================================
 ```
 
@@ -59,11 +59,11 @@ After completion, check:
 
 ```bash
 # Check files were created
-ls ~/JobForge/career/
-ls ~/JobForge/results/resumes/
+ls ~/JobBell/career/
+ls ~/JobBell/results/resumes/
 
 # View the resume
-open ~/JobForge/results/resumes/Test_User_ATS_Resume.docx
+open ~/JobBell/results/resumes/Test_User_ATS_Resume.docx
 ```
 
 ---
@@ -115,7 +115,7 @@ The script will auto-install git (asks for password).
 
 User might need to run:
 ```bash
-chmod +x ~/JobForge/install.sh
+chmod +x ~/JobBell/install.sh
 ```
 
 ---
@@ -145,7 +145,7 @@ chmod +x ~/JobForge/install.sh
 
 ### Scenario 2: Mac with Python
 - Should detect Python
-- Should download JobForge
+- Should download JobBell
 - Should install dependencies
 - Should start agent immediately
 
@@ -169,10 +169,10 @@ chmod +x ~/JobForge/install.sh
 brew install python3
 
 # Clone repo
-git clone https://github.com/candidcsian/JobForge.git
+git clone https://github.com/candidcsian/JobBell.git
 
 # Go to directory
-cd JobForge
+cd JobBell
 
 # Create virtual environment
 python3 -m venv venv
@@ -184,12 +184,12 @@ source venv/bin/activate
 pip install python-docx pyyaml
 
 # Run agent
-python3 jobforge_agent.py
+python3 jobbell_agent.py
 ```
 
 **After** (simple):
 ```bash
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
 ```
 
 **That's it!** 🎉
@@ -203,7 +203,7 @@ When sharing with friends, just say:
 ```
 Open Terminal and run:
 
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
 
 That's it! It will guide you through everything.
 ```
@@ -215,7 +215,7 @@ That's it! It will guide you through everything.
 After first install, users can run:
 
 ```bash
-cd ~/JobForge
+cd ~/JobBell
 ./start_agent.sh
 ```
 
