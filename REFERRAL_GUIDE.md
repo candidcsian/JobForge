@@ -1,4 +1,4 @@
-# 🤝 JobBell Referral System
+# 🤝 JobForge Referral System
 
 ## Why Referrals Matter
 
@@ -10,16 +10,16 @@
 
 ### 1. Find Matching Jobs
 ```bash
-cd ~/JobBell
+cd ~/JobForge
 source venv/bin/activate
 
-python3 jobbell.py discover
-python3 jobbell.py match
+python3 jobforge.py discover
+python3 jobforge.py match
 ```
 
 ### 2. Find Employees at Target Companies
 ```bash
-python3 jobbell.py referral --top 10
+python3 jobforge.py referral --top 10
 ```
 
 **Output:**
@@ -87,10 +87,10 @@ python3 interactive.py
 
 ```bash
 # Find employees at top 10 companies
-python3 jobbell.py referral --top 10
+python3 jobforge.py referral --top 10
 
 # Find employees at top 20 companies
-python3 jobbell.py referral --top 20
+python3 jobforge.py referral --top 20
 
 # Results saved to:
 # results/matches/[date]/employee_search.json
@@ -123,13 +123,13 @@ python3 jobbell.py referral --top 20
 
 ```bash
 # 1. Find jobs
-python3 jobbell.py discover
-python3 jobbell.py match
+python3 jobforge.py discover
+python3 jobforge.py match
 
 # Output: 95 matching jobs, top is OpenAI ML Engineer (95%)
 
 # 2. Find employees
-python3 jobbell.py referral --top 5
+python3 jobforge.py referral --top 5
 
 # Output: LinkedIn links for OpenAI employees
 
@@ -179,7 +179,7 @@ All templates available in `core/referral/messages.py`:
 - Follow-up
 - Thank you
 
-## Integration with JobBell
+## Integration with JobForge
 
 ```bash
 # Full workflow

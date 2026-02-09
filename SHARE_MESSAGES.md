@@ -1,14 +1,14 @@
-# Share JobBell with Friends - Copy-Paste Messages
+# Share JobForge with Friends - Copy-Paste Messages
 
 ## 📱 Simple Text Message
 
 ```
-Hey! I found this amazing tool called JobBell that helped me 
+Hey! I found this amazing tool called JobForge that helped me 
 build my resume in 2 hours.
 
 Just run this one command:
 
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
 
 It will:
 ✅ Build your resume from career history
@@ -25,7 +25,7 @@ Let me know if you need help!
 ## 💼 LinkedIn Post
 
 ```
-🚀 Built my resume in 2 hours with JobBell!
+🚀 Built my resume in 2 hours with JobForge!
 
 One command to:
 ✅ Build ATS-optimized resume
@@ -34,9 +34,9 @@ One command to:
 ✅ 100% private (local data)
 
 Try it:
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
 
-Free & open source: https://github.com/candidcsian/JobBell
+Free & open source: https://github.com/candidcsian/JobForge
 
 #JobSearch #CareerDevelopment #OpenSource
 ```
@@ -51,7 +51,7 @@ Free & open source: https://github.com/candidcsian/JobBell
 ```
 Hi [Name],
 
-I recently used a tool called JobBell that helped me build my 
+I recently used a tool called JobForge that helped me build my 
 resume and optimize my LinkedIn profile in just 2 hours.
 
 It's completely free and open source. Everything runs on your 
@@ -59,7 +59,7 @@ computer, so your data stays private.
 
 To try it, just open Terminal and run:
 
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
 
 The tool will guide you through:
 - Building your resume from career history
@@ -68,7 +68,7 @@ The tool will guide you through:
 - Setting up job portals
 - Job search strategy
 
-Check it out: https://github.com/candidcsian/JobBell
+Check it out: https://github.com/candidcsian/JobForge
 
 Let me know if you have questions!
 
@@ -81,17 +81,17 @@ Best,
 ## 🐦 Twitter/X Post
 
 ```
-Built my resume in 2 hours with JobBell 🚀
+Built my resume in 2 hours with JobForge 🚀
 
 One command:
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
 
 ✅ ATS-optimized resume
 ✅ LinkedIn optimization
 ✅ 100% private
 ✅ Free & open source
 
-https://github.com/candidcsian/JobBell
+https://github.com/candidcsian/JobForge
 
 #JobSearch #OpenSource
 ```
@@ -101,35 +101,35 @@ https://github.com/candidcsian/JobBell
 ## 💬 WhatsApp Message
 
 ```
-Hey! Found this cool tool - JobBell
+Hey! Found this cool tool - JobForge
 
 Helped me build my resume in 2 hours 🚀
 
 Just run this in Terminal:
 
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
 
 It's free and everything stays on your computer (private)
 
-Check it: https://github.com/candidcsian/JobBell
+Check it: https://github.com/candidcsian/JobForge
 ```
 
 ---
 
 ## 📺 Demo Video Script (if you make one)
 
-**Title**: Build Your Resume in 2 Hours with JobBell
+**Title**: Build Your Resume in 2 Hours with JobForge
 
 **Script**:
 ```
-Hey everyone! Today I'm showing you JobBell - a tool that 
+Hey everyone! Today I'm showing you JobForge - a tool that 
 helped me build my resume in just 2 hours.
 
 [Show terminal]
 
 All you need to do is run this one command:
 
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
 
 [Run command, show it installing]
 
@@ -147,7 +147,7 @@ And it generates:
 Everything is free, open source, and runs locally on your 
 computer - so your data stays private.
 
-Link in description: https://github.com/candidcsian/JobBell
+Link in description: https://github.com/candidcsian/JobForge
 
 Let me know if you have questions!
 ```
@@ -161,11 +161,11 @@ Let me know if you have questions!
 ```
 Fellow QA engineers! 🧪
 
-Built JobBell - a tool that creates ATS-optimized resumes 
+Built JobForge - a tool that creates ATS-optimized resumes 
 from your career history.
 
 One command:
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
 
 Perfect for:
 ✅ Senior QA Engineers
@@ -173,7 +173,7 @@ Perfect for:
 ✅ Test Automation Engineers
 ✅ QA Leads
 
-Free & open source: https://github.com/candidcsian/JobBell
+Free & open source: https://github.com/candidcsian/JobForge
 
 #QA #SDET #TestAutomation
 ```
@@ -183,18 +183,18 @@ Free & open source: https://github.com/candidcsian/JobBell
 ```
 Changing careers? 📊➡️💻
 
-JobBell helps you build a resume that highlights 
+JobForge helps you build a resume that highlights 
 transferable skills.
 
 One command to get started:
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
 
 ✅ Organize career history
 ✅ Highlight achievements
 ✅ ATS-optimized output
 ✅ 100% private
 
-https://github.com/candidcsian/JobBell
+https://github.com/candidcsian/JobForge
 ```
 
 ### For Recent Grads
@@ -202,13 +202,13 @@ https://github.com/candidcsian/JobBell
 ```
 New grad looking for your first job? 🎓
 
-JobBell helps you build a professional resume even with 
+JobForge helps you build a professional resume even with 
 limited experience.
 
 One command:
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
 
-Free tool: https://github.com/candidcsian/JobBell
+Free tool: https://github.com/candidcsian/JobForge
 
 #NewGrad #JobSearch #CareerStart
 ```
@@ -223,11 +223,11 @@ Free tool: https://github.com/candidcsian/JobBell
 
 **Body**:
 ```
-I recently built JobBell - an open-source tool that helps you 
+I recently built JobForge - an open-source tool that helps you 
 build ATS-optimized resumes from your career history.
 
 **One command to run:**
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
 
 **What it does:**
 - Guides you through documenting your career
@@ -239,7 +239,7 @@ curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh 
 Everything runs locally on your computer. No data sent anywhere.
 
 **Free & open source:**
-https://github.com/candidcsian/JobBell
+https://github.com/candidcsian/JobForge
 
 Feedback welcome!
 ```
@@ -250,10 +250,10 @@ Feedback welcome!
 
 **Body**:
 ```
-Sharing a free tool I built called JobBell.
+Sharing a free tool I built called JobForge.
 
 **One command:**
-curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/install.sh | bash
 
 It helps you:
 ✅ Build resume from career history
@@ -263,7 +263,7 @@ It helps you:
 
 100% free, open source, and private (runs on your computer).
 
-https://github.com/candidcsian/JobBell
+https://github.com/candidcsian/JobForge
 
 Hope it helps someone!
 ```
@@ -274,7 +274,7 @@ Hope it helps someone!
 
 If you want to make it even easier, you could create a simple landing page:
 
-**jobbell.dev** (or similar)
+**jobforge.dev** (or similar)
 
 With just:
 - Big button: "Get Started"
@@ -284,6 +284,6 @@ With just:
 
 ---
 
-**Use any of these messages to share JobBell!** 🚀
+**Use any of these messages to share JobForge!** 🚀
 
 **The key message**: One command, 2 hours, complete resume setup!

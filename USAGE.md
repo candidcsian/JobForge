@@ -1,11 +1,11 @@
-# JobBell - Usage Guide
+# JobForge - Usage Guide
 
-## 🎯 Two Ways to Use JobBell
+## 🎯 Two Ways to Use JobForge
 
 ### 1. Interactive Mode (Easiest)
 
 ```bash
-cd ~/JobBell
+cd ~/JobForge
 python3 interactive.py
 ```
 
@@ -19,7 +19,7 @@ python3 interactive.py
 
 **Example session:**
 ```
-🔨 Welcome to JobBell - Interactive Setup
+🔨 Welcome to JobForge - Interactive Setup
 ==================================================
 
 📄 Step 1: Resume
@@ -51,20 +51,20 @@ What would you like to do?
 Choice (1-3): 3
 ✅ Will search remote jobs only
 
-⚡ Running JobBell...
+⚡ Running JobForge...
 [Results shown here]
 ```
 
 ### 2. Command Line Mode (Advanced)
 
 ```bash
-cd ~/JobBell
+cd ~/JobForge
 
 # Step-by-step
-python3 jobbell.py discover
-python3 jobbell.py match --resume ~/Downloads/resume.pdf
-python3 jobbell.py show --top 20
-python3 jobbell.py forge --top 10
+python3 jobforge.py discover
+python3 jobforge.py match --resume ~/Downloads/resume.pdf
+python3 jobforge.py show --top 20
+python3 jobforge.py forge --top 10
 ```
 
 ## 🌍 Remote Jobs Only
@@ -83,16 +83,16 @@ locations:
 
 ### Option 3: Filter after matching
 ```bash
-python3 jobbell.py match
-python3 jobbell.py show --top 50 | grep -i remote
+python3 jobforge.py match
+python3 jobforge.py show --top 50 | grep -i remote
 ```
 
-## 📤 Sharing JobBell
+## 📤 Sharing JobForge
 
 ### Publish to GitHub
 
 ```bash
-cd ~/JobBell
+cd ~/JobForge
 
 # Step 1: Commit your code
 git add .
@@ -112,7 +112,7 @@ git commit -m "Initial commit"
 **Option 1: GitHub (Public)**
 ```bash
 ./publish.sh
-# Share: https://github.com/YOUR_USERNAME/JobBell
+# Share: https://github.com/YOUR_USERNAME/JobForge
 ```
 
 **Option 2: GitHub (Private)**
@@ -124,19 +124,19 @@ git commit -m "Initial commit"
 **Option 3: Zip File**
 ```bash
 cd ~
-tar -czf JobBell.tar.gz JobBell/
-# Send JobBell.tar.gz via email/drive
+tar -czf JobForge.tar.gz JobForge/
+# Send JobForge.tar.gz via email/drive
 ```
 
 **Option 4: Direct Clone (if on same network)**
 ```bash
 # On your machine
-cd ~/JobBell
+cd ~/JobForge
 python3 -m http.server 8000
 
 # On their machine
-wget http://YOUR_IP:8000/JobBell.tar.gz
-tar -xzf JobBell.tar.gz
+wget http://YOUR_IP:8000/JobForge.tar.gz
+tar -xzf JobForge.tar.gz
 ```
 
 ## 📋 Complete Workflow Examples
@@ -144,7 +144,7 @@ tar -xzf JobBell.tar.gz
 ### Example 1: First Time User (Interactive)
 
 ```bash
-cd ~/JobBell
+cd ~/JobForge
 python3 interactive.py
 
 # Follow prompts:
@@ -163,20 +163,20 @@ python3 interactive.py
 ### Example 2: Weekly Job Search (CLI)
 
 ```bash
-cd ~/JobBell
+cd ~/JobForge
 
 # Monday: Find new jobs
-python3 jobbell.py discover
+python3 jobforge.py discover
 
 # Tuesday: Match and review
-python3 jobbell.py match --min-score 70
-python3 jobbell.py show --top 20
+python3 jobforge.py match --min-score 70
+python3 jobforge.py show --top 20
 
 # Wednesday: Generate resumes
-python3 jobbell.py forge --top 10
+python3 jobforge.py forge --top 10
 
 # Thursday: Export for tracking
-python3 jobbell.py export --output weekly-jobs.csv
+python3 jobforge.py export --output weekly-jobs.csv
 ```
 
 ### Example 3: Remote Jobs Only
@@ -187,18 +187,18 @@ vim config/settings.yaml
 # Set: locations: [Remote]
 
 # Run matching
-python3 jobbell.py match
+python3 jobforge.py match
 
 # View remote jobs
-python3 jobbell.py show --top 50
+python3 jobforge.py show --top 50
 ```
 
 ### Example 4: Specific Companies
 
 ```bash
-python3 jobbell.py discover --companies "OpenAI,Anthropic,Google"
-python3 jobbell.py match
-python3 jobbell.py show --company "OpenAI"
+python3 jobforge.py discover --companies "OpenAI,Anthropic,Google"
+python3 jobforge.py match
+python3 jobforge.py show --company "OpenAI"
 ```
 
 ## 🔧 Configuration Files
@@ -259,35 +259,35 @@ Score,Company,Title,Location,URL
 
 2. **Run Publish Script**
    ```bash
-   cd ~/JobBell
+   cd ~/JobForge
    ./publish.sh
    ```
 
 3. **Create Repository on GitHub**
    - Go to https://github.com/new
-   - Name: `JobBell`
+   - Name: `JobForge`
    - Description: `AI-powered job search automation`
    - Public or Private: Your choice
    - **Don't** initialize with README
 
 4. **Push Code**
    ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/JobBell.git
+   git remote add origin https://github.com/YOUR_USERNAME/JobForge.git
    git branch -M main
    git push -u origin main
    ```
 
 5. **Share Link**
    ```
-   https://github.com/YOUR_USERNAME/JobBell
+   https://github.com/YOUR_USERNAME/JobForge
    ```
 
 ### Making it Public
 
 Anyone can then use it:
 ```bash
-git clone https://github.com/YOUR_USERNAME/JobBell.git
-cd JobBell
+git clone https://github.com/YOUR_USERNAME/JobForge.git
+cd JobForge
 ./setup.sh
 python3 interactive.py
 ```
@@ -307,7 +307,7 @@ python3 interactive.py
 A: Set `locations: [Remote]` in config/settings.yaml or use interactive mode option 3
 
 **Q: Can I upload my resume?**
-A: Yes! Use `python3 interactive.py` or `python3 jobbell.py match --resume path/to/resume.pdf`
+A: Yes! Use `python3 interactive.py` or `python3 jobforge.py match --resume path/to/resume.pdf`
 
 **Q: How do I share this with friends?**
 A: Run `./publish.sh` and push to GitHub, then share the link
@@ -316,7 +316,7 @@ A: Run `./publish.sh` and push to GitHub, then share the link
 A: Yes! Everything runs locally. Only you see your data unless you push to public GitHub
 
 **Q: Can I search specific companies?**
-A: Yes! `python3 jobbell.py discover --companies "OpenAI,Google"`
+A: Yes! `python3 jobforge.py discover --companies "OpenAI,Google"`
 
 ---
 

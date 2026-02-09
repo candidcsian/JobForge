@@ -1,6 +1,6 @@
-# 📊 JobBell Output Files - Complete Guide
+# 📊 JobForge Output Files - Complete Guide
 
-## What You Get After Running JobBell
+## What You Get After Running JobForge
 
 ### 1. ACTION_SHEET.csv - Your Main Tracking File ⭐
 
@@ -70,13 +70,13 @@ results/resumes/
 
 ### Step 1: Generate Everything
 ```bash
-cd ~/JobBell
+cd ~/JobForge
 source venv/bin/activate
 
-python3 jobbell.py discover
-python3 jobbell.py match
-python3 jobbell.py referral --top 10
-python3 jobbell.py forge --top 10
+python3 jobforge.py discover
+python3 jobforge.py match
+python3 jobforge.py referral --top 10
+python3 jobforge.py forge --top 10
 python3 core/cli/action_sheet.py
 ```
 
@@ -154,7 +154,7 @@ ACTION_SHEET.csv in Excel:
 
 ```bash
 # Generate action sheet
-cd ~/JobBell
+cd ~/JobForge
 source venv/bin/activate
 python3 core/cli/action_sheet.py
 

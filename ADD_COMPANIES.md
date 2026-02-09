@@ -1,13 +1,13 @@
-# How to Add More Companies to JobBell
+# How to Add More Companies to JobForge
 
 ## Quick Method
 
-Edit `~/JobBell/config/companies.yaml`:
+Edit `~/JobForge/config/companies.yaml`:
 
 ```bash
-vim ~/JobBell/config/companies.yaml
+vim ~/JobForge/config/companies.yaml
 # or
-nano ~/JobBell/config/companies.yaml
+nano ~/JobForge/config/companies.yaml
 ```
 
 Add your company at the end:
@@ -57,7 +57,7 @@ Look at the URL or page structure:
 
 Open the file:
 ```bash
-cd ~/JobBell
+cd ~/JobForge
 vim config/companies.yaml
 ```
 
@@ -79,11 +79,11 @@ Add at the end (keep the format):
 ### 4. Test It
 
 ```bash
-cd ~/JobBell
+cd ~/JobForge
 source venv/bin/activate
 
 # Test with just your new company
-python3 jobbell.py discover --companies "Notion"
+python3 jobforge.py discover --companies "Notion"
 ```
 
 ## Common ATS Types
@@ -139,7 +139,7 @@ python3 jobbell.py discover --companies "Notion"
 Or use this one-liner to add a company:
 
 ```bash
-cd ~/JobBell
+cd ~/JobForge
 
 # Add Notion
 cat >> config/companies.yaml << 'EOF'
@@ -150,7 +150,7 @@ EOF
 
 # Test it
 source venv/bin/activate
-python3 jobbell.py discover --companies "Notion"
+python3 jobforge.py discover --companies "Notion"
 ```
 
 ## Tips
@@ -171,13 +171,13 @@ grep "^- name:" config/companies.yaml
 
 # Test your new company
 source venv/bin/activate
-python3 jobbell.py discover --companies "YourCompany"
+python3 jobforge.py discover --companies "YourCompany"
 ```
 
 ## Full Example
 
 ```bash
-cd ~/JobBell
+cd ~/JobForge
 
 # 1. Edit config
 vim config/companies.yaml
@@ -193,10 +193,10 @@ vim config/companies.yaml
 
 # 2. Save and test
 source venv/bin/activate
-python3 jobbell.py discover --companies "Notion,Figma"
+python3 jobforge.py discover --companies "Notion,Figma"
 
 # 3. If successful, run full discovery
-python3 jobbell.py discover
+python3 jobforge.py discover
 ```
 
 ---

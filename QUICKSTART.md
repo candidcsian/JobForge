@@ -4,8 +4,8 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/JobBell.git
-cd JobBell
+git clone https://github.com/yourusername/JobForge.git
+cd JobForge
 
 # Install dependencies
 pip install -r requirements.txt
@@ -43,35 +43,35 @@ locations:
   - Remote
 ```
 
-## Run JobBell
+## Run JobForge
 
 ```bash
 # Step 1: Discover jobs
-python jobbell.py discover
+python jobforge.py discover
 
 # Step 2: Match jobs to your profile
-python jobbell.py match
+python jobforge.py match
 
 # Step 3: View top matches
-python jobbell.py show --top 20
+python jobforge.py show --top 20
 
 # Step 4: Generate tailored resumes
-python jobbell.py forge --top 10
+python jobforge.py forge --top 10
 
 # Step 5: Export results
-python jobbell.py export --output my-jobs.csv
+python jobforge.py export --output my-jobs.csv
 ```
 
 ## Example Workflow
 
 ```bash
 # Weekly job search
-python jobbell.py discover
-python jobbell.py match --min-score 70
-python jobbell.py show --top 10
+python jobforge.py discover
+python jobforge.py match --min-score 70
+python jobforge.py show --top 10
 
 # Generate resumes for top 5
-python jobbell.py forge --top 5 --min-score 80
+python jobforge.py forge --top 5 --min-score 80
 
 # Check results
 ls results/resumes/
@@ -106,4 +106,4 @@ ls results/resumes/
 
 - Read full [README.md](README.md)
 - Check [INTEGRATION_PLAN.md](INTEGRATION_PLAN.md) for advanced features
-- Contribute at [GitHub](https://github.com/yourusername/JobBell)
+- Contribute at [GitHub](https://github.com/yourusername/JobForge)

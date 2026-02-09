@@ -1,9 +1,9 @@
 #!/bin/bash
-# JobBell - Main Runner Script
+# JobForge - Main Runner Script
 
 set -e
 
-echo "🚀 JobBell - AI-Powered Career Assistant"
+echo "🚀 JobForge - AI-Powered Career Assistant"
 echo "=========================================="
 echo ""
 
@@ -14,16 +14,16 @@ if ! command -v python3 &> /dev/null; then
 fi
 
 # Setup directory
-JOBFORGE_DIR="$HOME/JobBell"
+JOBFORGE_DIR="$HOME/JobForge"
 
 if [ ! -d "$JOBFORGE_DIR" ]; then
-    echo "📥 Downloading JobBell..."
-    git clone -q https://github.com/candidcsian/JobBell.git "$JOBFORGE_DIR" 2>/dev/null || {
+    echo "📥 Downloading JobForge..."
+    git clone -q https://github.com/candidcsian/JobForge.git "$JOBFORGE_DIR" 2>/dev/null || {
         echo "❌ Git not found. Installing..."
         if [[ "$OSTYPE" == "darwin"* ]]; then
             xcode-select --install
         fi
-        git clone -q https://github.com/candidcsian/JobBell.git "$JOBFORGE_DIR"
+        git clone -q https://github.com/candidcsian/JobForge.git "$JOBFORGE_DIR"
     }
 fi
 
@@ -49,5 +49,5 @@ echo ""
 python3 test_agent.py
 
 echo ""
-echo "📂 Files location: ~/JobBell"
-echo "🔄 Run again: cd ~/JobBell && ./start_agent.sh"
+echo "📂 Files location: ~/JobForge"
+echo "🔄 Run again: cd ~/JobForge && ./start_agent.sh"

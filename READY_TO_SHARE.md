@@ -1,4 +1,4 @@
-# 🎉 JobBell is Ready to Share!
+# 🎉 JobForge is Ready to Share!
 
 ## ✅ **Tested & Working**
 
@@ -9,7 +9,7 @@ The one-command installer has been tested and works perfectly!
 ## 🚀 **The Command**
 
 ```bash
-bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/jobbell_onecommand.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)
 ```
 
 **Just ONE command - that's it!**
@@ -20,22 +20,22 @@ bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/jobb
 
 ### **Text Message / WhatsApp:**
 ```
-Hey! Try JobBell - it helped me build my resume in 2 hours.
+Hey! Try JobForge - it helped me build my resume in 2 hours.
 
 Just run this command in Terminal:
 
-bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/jobbell_onecommand.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)
 
 Free and everything stays on your computer!
 ```
 
 ### **LinkedIn Post:**
 ```
-🚀 Just built my resume in 2 hours with JobBell!
+🚀 Just built my resume in 2 hours with JobForge!
 
 One command to get started:
 
-bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/jobbell_onecommand.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)
 
 What it does:
 ✅ Builds ATS-optimized resume from career history
@@ -43,7 +43,7 @@ What it does:
 ✅ Provides job search strategy
 ✅ 100% private (all data stays local)
 
-Free & open source: https://github.com/candidcsian/JobBell
+Free & open source: https://github.com/candidcsian/JobForge
 
 #JobSearch #CareerDevelopment #OpenSource #Resume
 ```
@@ -54,11 +54,11 @@ Subject: Tool that helped me build my resume in 2 hours
 
 Hi [Name],
 
-I recently used JobBell to build my resume and it was amazing - took just 2 hours!
+I recently used JobForge to build my resume and it was amazing - took just 2 hours!
 
 To try it, open Terminal and run this one command:
 
-bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/jobbell_onecommand.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)
 
 It will:
 - Guide you through documenting your career
@@ -68,7 +68,7 @@ It will:
 
 Everything is free and runs on your computer (private).
 
-Check it out: https://github.com/candidcsian/JobBell
+Check it out: https://github.com/candidcsian/JobForge
 
 Let me know if you need help!
 
@@ -78,17 +78,17 @@ Best,
 
 ### **Twitter/X:**
 ```
-Built my resume in 2 hours with JobBell 🚀
+Built my resume in 2 hours with JobForge 🚀
 
 One command:
-bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/jobbell_onecommand.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)
 
 ✅ ATS-optimized
 ✅ LinkedIn ready
 ✅ 100% private
 ✅ Free & open source
 
-https://github.com/candidcsian/JobBell
+https://github.com/candidcsian/JobForge
 
 #JobSearch #OpenSource
 ```
@@ -184,7 +184,7 @@ When you get your new job, share:
 ```
 🎉 Got my new job!
 
-JobBell helped me:
+JobForge helped me:
 ✅ Build ATS-optimized resume
 ✅ Optimize LinkedIn profile
 ✅ Apply to 50+ jobs
@@ -193,7 +193,7 @@ JobBell helped me:
 
 Timeline: 4 weeks from resume to offer
 
-Tool is free: https://github.com/candidcsian/JobBell
+Tool is free: https://github.com/candidcsian/JobForge
 
 Thanks to everyone who supported my journey! 🙏
 ```
@@ -202,11 +202,11 @@ Thanks to everyone who supported my journey! 🙏
 
 ## 🚀 **Ready to Share?**
 
-**Your repository**: https://github.com/candidcsian/JobBell
+**Your repository**: https://github.com/candidcsian/JobForge
 
 **The command**:
 ```bash
-bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobBell/main/jobbell_onecommand.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)
 ```
 
 **Start sharing and help others land their dream jobs!** 🌟

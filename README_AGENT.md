@@ -1,12 +1,12 @@
-# JobBell - AI-Powered Career Assistant 🚀
+# JobForge - AI-Powered Career Assistant 🚀
 
 **Build your perfect resume, optimize LinkedIn, and land your dream job - all in one tool!**
 
 ---
 
-## What is JobBell?
+## What is JobForge?
 
-JobBell is an interactive AI agent that helps you:
+JobForge is an interactive AI agent that helps you:
 
 ✅ **Build Master Resume** - From your career history (year by year)  
 ✅ **Create ATS-Optimized Resumes** - That pass applicant tracking systems  
@@ -59,7 +59,7 @@ JobBell is an interactive AI agent that helps you:
 
 ### Step 1: Run the Agent
 ```bash
-python3 jobbell_agent.py
+python3 jobforge_agent.py
 ```
 
 ### Step 2: Answer Questions
@@ -105,8 +105,8 @@ Follow the agent's instructions to:
 
 ```bash
 # Clone the repository
-git clone <jobbell-repo-url>
-cd JobBell
+git clone <jobforge-repo-url>
+cd JobForge
 
 # Create virtual environment
 python3 -m venv venv
@@ -116,7 +116,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # Run the agent
-python3 jobbell_agent.py
+python3 jobforge_agent.py
 ```
 
 ---
@@ -159,7 +159,7 @@ python3 jobbell_agent.py
 
 ### Master Resume
 ```
-~/JobBell/career/
+~/JobForge/career/
 ├── master-resume.md          # Complete career profile
 ├── skills-matrix.md           # Skills with proficiency
 └── resume-generation-guide.md # How to customize
@@ -167,7 +167,7 @@ python3 jobbell_agent.py
 
 ### ATS Resume
 ```
-~/JobBell/results/resumes/
+~/JobForge/results/resumes/
 ├── ATS_Resume.docx            # Upload to job portals
 ├── ATS_Resume.pdf             # PDF version
 └── LinkedIn_Profile.md        # Copy-paste to LinkedIn
@@ -268,7 +268,7 @@ python3 jobbell_agent.py
 
 ## Contributing
 
-Want to improve JobBell? Contributions welcome!
+Want to improve JobForge? Contributions welcome!
 
 1. Fork the repository
 2. Create a feature branch
@@ -281,7 +281,7 @@ Want to improve JobBell? Contributions welcome!
 
 ### Issues or Questions?
 - Open an issue on GitHub
-- Email: support@jobbell.ai (placeholder)
+- Email: support@jobforge.ai (placeholder)
 - Documentation: See `/docs` folder
 
 ---
@@ -306,16 +306,16 @@ Built with:
 
 ```bash
 # Run the interactive agent
-python3 jobbell_agent.py
+python3 jobforge_agent.py
 
 # Generate resume from existing profile
-python3 jobbell.py forge --career-profile master
+python3 jobforge.py forge --career-profile master
 
 # Match jobs to your profile
-python3 jobbell.py match
+python3 jobforge.py match
 
 # Search for jobs
-python3 jobbell.py search "Senior QA Engineer"
+python3 jobforge.py search "Senior QA Engineer"
 
 # Generate action sheet
 python3 core/cli/action_sheet.py
@@ -329,11 +329,11 @@ python3 core/cli/action_sheet.py
 
 ```
 Hey! I found this amazing tool that helped me build my resume 
-and optimize my LinkedIn in just 2 hours. It's called JobBell.
+and optimize my LinkedIn in just 2 hours. It's called JobForge.
 
 Check it out: <github-link>
 
-Just run: python3 jobbell_agent.py
+Just run: python3 jobforge_agent.py
 
 It guides you through everything step-by-step!
 ```
@@ -343,7 +343,7 @@ It guides you through everything step-by-step!
 **Ready to land your dream job? Let's get started!** 🚀
 
 ```bash
-python3 jobbell_agent.py
+python3 jobforge_agent.py
 ```
 
 ---

@@ -1,7 +1,7 @@
 #!/bin/bash
-# JobBell Agent Launcher
+# JobForge Agent Launcher
 
-echo "🔔 Starting JobBell Agent..."
+echo "🔔 Starting JobForge Agent..."
 echo ""
 
 # Check if virtual environment exists
@@ -20,7 +20,7 @@ if ! python3 -c "import docx" 2>/dev/null; then
 fi
 
 # Run the agent
-python3 jobbell_agent.py
+python3 jobforge_agent.py
 
 echo ""
-echo "✅ JobBell Agent completed!"
+echo "✅ JobForge Agent completed!"

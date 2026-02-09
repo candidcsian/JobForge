@@ -1,10 +1,10 @@
-# 🏗️ JobBell - Complete Architecture
+# 🏗️ JobForge - Complete Architecture
 
 ## System Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                         JobBell                                 │
+│                         JobForge                                 │
 │         AI-Powered Job Search + Referral System                 │
 └─────────────────────────────────────────────────────────────────┘
 
@@ -23,8 +23,8 @@
 ## Directory Structure
 
 ```
-JobBell/
-├── jobbell.py                 # Main CLI entry point
+JobForge/
+├── jobforge.py                 # Main CLI entry point
 ├── interactive.py              # Interactive wizard
 │
 ├── core/                       # Core modules
@@ -98,7 +98,7 @@ JobBell/
 ### 1. Discovery Phase
 
 ```
-User runs: python3 jobbell.py discover
+User runs: python3 jobforge.py discover
 
 orchestrator.py
     │
@@ -119,7 +119,7 @@ orchestrator.py
 ### 2. Matching Phase
 
 ```
-User runs: python3 jobbell.py match
+User runs: python3 jobforge.py match
 
 matcher.py
     │
@@ -146,7 +146,7 @@ matcher.py
 ### 3. Referral Phase (NEW!)
 
 ```
-User runs: python3 jobbell.py referral --top 10
+User runs: python3 jobforge.py referral --top 10
 
 finder.py
     │
@@ -172,7 +172,7 @@ finder.py
 ### 4. Forge Phase
 
 ```
-User runs: python3 jobbell.py forge --top 10
+User runs: python3 jobforge.py forge --top 10
 
 generator.py
     │
@@ -305,27 +305,27 @@ python3 interactive.py
 
 ```bash
 # Step 1: Discover
-python3 jobbell.py discover
+python3 jobforge.py discover
 # → 287 jobs from 53 companies
 
 # Step 2: Match
-python3 jobbell.py match
+python3 jobforge.py match
 # → 95 jobs scored 60%+
 
 # Step 3: Find employees (NEW!)
-python3 jobbell.py referral --top 10
+python3 jobforge.py referral --top 10
 # → LinkedIn links for top 10 companies
 
 # Step 4: View
-python3 jobbell.py show --top 20
+python3 jobforge.py show --top 20
 # → Display top 20 matches
 
 # Step 5: Generate resumes
-python3 jobbell.py forge --top 10
+python3 jobforge.py forge --top 10
 # → 10 tailored resumes
 
 # Step 6: Export
-python3 jobbell.py export --output jobs.csv
+python3 jobforge.py export --output jobs.csv
 # → CSV for tracking
 ```
 
@@ -369,4 +369,4 @@ python3 jobbell.py export --output jobs.csv
 
 ---
 
-**JobBell: Complete job search automation with referral system** 🔨
+**JobForge: Complete job search automation with referral system** 🔨

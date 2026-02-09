@@ -1,28 +1,28 @@
-# ✅ JobBell - Testing Complete!
+# ✅ JobForge - Testing Complete!
 
 ## Tests Performed
 
 ### 1. Matching Engine ✅
 ```bash
-python3 jobbell.py match
+python3 jobforge.py match
 ```
 **Result:** Successfully parsed 2 career files, identified 21 skills, matched 2/5 jobs
 
 ### 2. Show Results ✅
 ```bash
-python3 jobbell.py show --top 5
+python3 jobforge.py show --top 5
 ```
 **Result:** Displayed top matches with scores and locations
 
 ### 3. Resume Generation ✅
 ```bash
-python3 jobbell.py forge --top 2 --min-score 50
+python3 jobforge.py forge --top 2 --min-score 50
 ```
 **Result:** Generated 2 tailored resumes in results/resumes/
 
 ### 4. Export ✅
 ```bash
-python3 jobbell.py export --output test-jobs.csv
+python3 jobforge.py export --output test-jobs.csv
 ```
 **Result:** Exported 2 jobs to CSV successfully
 
@@ -43,7 +43,7 @@ python3 jobbell.py export --output test-jobs.csv
 
 ### Matching
 ```
-🎯 JobBell - Job Matching
+🎯 JobForge - Job Matching
 📊 Profile Summary:
    Skills: 21 identified
    Titles: 2 identified
@@ -83,7 +83,7 @@ results/
 
 ## Ready to Use
 
-**Yes!** JobBell is functional and ready to:
+**Yes!** JobForge is functional and ready to:
 1. Match jobs to your profile
 2. Score and rank opportunities
 3. Generate tailored resumes
@@ -98,4 +98,4 @@ results/
 
 ---
 
-**JobBell tested and working!** 🔨
+**JobForge tested and working!** 🔨

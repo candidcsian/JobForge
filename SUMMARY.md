@@ -1,15 +1,15 @@
-# 🔨 JobBell - Project Summary
+# 🔨 JobForge - Project Summary
 
 ## What We Built
 
-**JobBell** is a unified, AI-powered job search automation tool that combines:
+**JobForge** is a unified, AI-powered job search automation tool that combines:
 - Job discovery from 50+ companies
 - Intelligent matching based on your profile
 - AI-generated tailored resumes
 
 ## Key Features
 
-✅ **One CLI** - All operations through `python3 jobbell.py`
+✅ **One CLI** - All operations through `python3 jobforge.py`
 ✅ **Career-based** - Maintain history in markdown, not static resumes
 ✅ **Smart Matching** - 0-100% scoring with detailed breakdowns
 ✅ **AI Resumes** - Generate tailored applications automatically
@@ -18,18 +18,18 @@
 ## Commands
 
 \`\`\`bash
-jobbell discover    # Find jobs
-jobbell match       # Score relevance
-jobbell forge       # Generate resumes
-jobbell show        # View results
-jobbell export      # Export CSV
+jobforge discover    # Find jobs
+jobforge match       # Score relevance
+jobforge forge       # Generate resumes
+jobforge show        # View results
+jobforge export      # Export CSV
 \`\`\`
 
 ## File Structure
 
 \`\`\`
-JobBell/
-├── jobbell.py           # Main CLI
+JobForge/
+├── jobforge.py           # Main CLI
 ├── core/                 # Core modules
 ├── career/               # Your experience
 ├── config/               # Settings
@@ -39,10 +39,10 @@ JobBell/
 ## Quick Start
 
 \`\`\`bash
-cd ~/JobBell
+cd ~/JobForge
 ./setup.sh
 source venv/bin/activate
-python3 jobbell.py match  # Test with example data
+python3 jobforge.py match  # Test with example data
 \`\`\`
 
 ## Status
@@ -62,6 +62,6 @@ python3 jobbell.py match  # Test with example data
 
 ## Location
 
-\`~/JobBell/\`
+\`~/JobForge/\`
 
 All code is ready to use and extend!

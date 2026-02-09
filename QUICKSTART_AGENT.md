@@ -1,4 +1,4 @@
-# 🚀 JobBell Agent - Quick Start Guide
+# 🚀 JobForge Agent - Quick Start Guide
 
 ## For You (Senthil)
 
@@ -9,13 +9,13 @@ Your setup is complete! Here's what you have:
 2. **ATS Resume** - Ready to upload to Naukri (from mobile)
 3. **LinkedIn Profile** - Already updated and optimized
 4. **Job Portals** - Set up on LinkedIn, Indeed, Instahyre, Cutshort
-5. **JobBell Agent** - Ready to share with friends
+5. **JobForge Agent** - Ready to share with friends
 
 ### 📱 Next Step: Upload to Naukri (Mobile)
 Since Naukri isn't opening on your laptop:
 1. Open Naukri app on your mobile
 2. Go to Profile → Resume
-3. Upload from: `~/JobBell/results/resumes/Senthil_Kumar_ATS_Resume.docx`
+3. Upload from: `~/JobForge/results/resumes/Senthil_Kumar_ATS_Resume.docx`
 4. Set profile to "Actively Looking"
 
 **Or**: Email the resume to yourself and upload from mobile browser
@@ -24,12 +24,12 @@ Since Naukri isn't opening on your laptop:
 
 ## For Your Friends
 
-### How to Share JobBell
+### How to Share JobForge
 
 **Option 1: Share the Tool**
 ```bash
-# They can clone/download JobBell
-cd ~/JobBell
+# They can clone/download JobForge
+cd ~/JobForge
 # Share this entire directory with them
 ```
 
@@ -37,7 +37,7 @@ cd ~/JobBell
 
 Send them this message:
 ```
-Hey! I used this amazing tool called JobBell that helped me:
+Hey! I used this amazing tool called JobForge that helped me:
 ✅ Build my resume from career history
 ✅ Optimize my LinkedIn profile  
 ✅ Set up job portals
@@ -47,9 +47,9 @@ All in just 2 hours!
 
 Want to try it? Here's how:
 
-1. Download JobBell from: <share-link>
+1. Download JobForge from: <share-link>
 2. Open terminal and run:
-   cd JobBell
+   cd JobForge
    ./start_agent.sh
 3. Follow the interactive prompts
 4. Get your resume + LinkedIn profile ready!
@@ -64,14 +64,14 @@ It's completely private - all data stays on your machine.
 ### For First-Time Users
 
 ```bash
-# Navigate to JobBell directory
-cd ~/JobBell
+# Navigate to JobForge directory
+cd ~/JobForge
 
 # Run the agent
 ./start_agent.sh
 
 # Or directly:
-python3 jobbell_agent.py
+python3 jobforge_agent.py
 ```
 
 ### What the Agent Does
@@ -117,7 +117,7 @@ python3 jobbell_agent.py
 ## What Gets Created
 
 ```
-~/JobBell/
+~/JobForge/
 ├── career/
 │   ├── [name]-master.md           # Master career profile
 │   ├── [name]-skills-matrix.md    # Skills with proficiency
@@ -129,7 +129,7 @@ python3 jobbell_agent.py
 │       ├── [Name]_ATS_Resume.pdf  # PDF version
 │       └── LinkedIn_Profile.md     # Copy-paste to LinkedIn
 │
-└── jobbell_agent.py              # The interactive agent
+└── jobforge_agent.py              # The interactive agent
 ```
 
 ---
@@ -197,14 +197,14 @@ python3 jobbell_agent.py
 
 ### Agent won't start
 ```bash
-# Make sure you're in JobBell directory
-cd ~/JobBell
+# Make sure you're in JobForge directory
+cd ~/JobForge
 
 # Make script executable
 chmod +x start_agent.sh
 
 # Run directly
-python3 jobbell_agent.py
+python3 jobforge_agent.py
 ```
 
 ### Missing dependencies
@@ -258,12 +258,12 @@ When answering questions:
 ### What to Share
 
 **Minimum:**
-- `jobbell_agent.py` - The interactive agent
+- `jobforge_agent.py` - The interactive agent
 - `start_agent.sh` - Easy launcher
 - `README_AGENT.md` - Instructions
 
 **Complete:**
-- Entire `JobBell` directory
+- Entire `JobForge` directory
 - They get all features
 - Can use existing templates
 
@@ -271,24 +271,24 @@ When answering questions:
 
 **Option 1: Direct Copy**
 ```bash
-# Copy JobBell to USB/shared drive
-cp -r ~/JobBell /path/to/share/
+# Copy JobForge to USB/shared drive
+cp -r ~/JobForge /path/to/share/
 
 # Or create a zip
 cd ~
-zip -r JobBell.zip JobBell/
+zip -r JobForge.zip JobForge/
 ```
 
 **Option 2: GitHub (if you make it public)**
 ```bash
 # They clone the repo
 git clone <your-github-repo>
-cd JobBell
+cd JobForge
 ./start_agent.sh
 ```
 
 **Option 3: Email**
-- Zip the JobBell directory
+- Zip the JobForge directory
 - Email to friends
 - They unzip and run
 
@@ -299,10 +299,10 @@ cd JobBell
 ```bash
 $ ./start_agent.sh
 
-🚀 Starting JobBell Agent...
+🚀 Starting JobForge Agent...
 
 ======================================================================
-🚀 Welcome to JobBell - Your AI Career Assistant!
+🚀 Welcome to JobForge - Your AI Career Assistant!
 ======================================================================
 
 I'll help you:
@@ -342,9 +342,9 @@ This will take about 30-60 minutes. Let's get started!
 ======================================================================
 
 📂 Files Created:
-   ✅ Master Resume: ~/JobBell/career/john-doe-master.md
-   ✅ ATS Resume: ~/JobBell/results/resumes/John_Doe_ATS_Resume.docx
-   ✅ LinkedIn Profile: ~/JobBell/results/resumes/LinkedIn_Profile.md
+   ✅ Master Resume: ~/JobForge/career/john-doe-master.md
+   ✅ ATS Resume: ~/JobForge/results/resumes/John_Doe_ATS_Resume.docx
+   ✅ LinkedIn Profile: ~/JobForge/results/resumes/LinkedIn_Profile.md
 
 🚀 Next Steps:
    1. Upload resume to Naukri
@@ -380,14 +380,14 @@ Good luck with your job search! 🍀
 4. ✅ Set up job alerts on all portals
 
 ### For Your Friends:
-1. Share JobBell directory or zip file
+1. Share JobForge directory or zip file
 2. Send them `README_AGENT.md`
 3. They run `./start_agent.sh`
 4. They get their resume + LinkedIn ready!
 
 ---
 
-**JobBell: From Career History to Dream Job in 2 Hours!** 🚀
+**JobForge: From Career History to Dream Job in 2 Hours!** 🚀
 
 ```bash
 # Start now

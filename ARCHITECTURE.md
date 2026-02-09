@@ -1,15 +1,15 @@
-# JobBell - Complete Job Search Automation
+# JobForge - Complete Job Search Automation
 
-## 🎯 What is JobBell?
+## 🎯 What is JobForge?
 
-**JobBell** is an AI-powered job search automation tool that:
+**JobForge** is an AI-powered job search automation tool that:
 1. **Discovers** jobs from 50+ tech companies automatically
 2. **Matches** jobs to your background with intelligent scoring
 3. **Forges** tailored resumes for each application using AI
 
 ## 🏗️ Architecture
 
-JobBell combines three powerful open-source projects:
+JobForge combines three powerful open-source projects:
 
 1. **Argus** (Job Discovery) - Crawls career pages across multiple ATS platforms
 2. **Resume Parser** (Matching) - Extracts skills and scores job relevance
@@ -18,8 +18,8 @@ JobBell combines three powerful open-source projects:
 ## 📁 Project Structure
 
 ```
-JobBell/
-├── jobbell.py              # Main CLI entry point
+JobForge/
+├── jobforge.py              # Main CLI entry point
 ├── core/
 │   ├── discovery/           # Job crawling engine
 │   ├── matching/            # Resume parsing & scoring
@@ -40,39 +40,39 @@ JobBell/
 
 ### Discovery
 ```bash
-python3 jobbell.py discover [--companies "OpenAI,Google"] [--timeout 60]
+python3 jobforge.py discover [--companies "OpenAI,Google"] [--timeout 60]
 ```
 Crawls company career pages and saves jobs to `results/jobs/`
 
 ### Matching
 ```bash
-python3 jobbell.py match [--min-score 60] [--career-dir career]
+python3 jobforge.py match [--min-score 60] [--career-dir career]
 ```
 Scores jobs against your profile, saves to `results/matches/`
 
 ### Forge
 ```bash
-python3 jobbell.py forge --top 10 [--min-score 70] [--type software-engineer]
+python3 jobforge.py forge --top 10 [--min-score 70] [--type software-engineer]
 ```
 Generates tailored resumes for top matches
 
 ### Show
 ```bash
-python3 jobbell.py show --top 20 [--company "OpenAI"] [--min-score 70]
+python3 jobforge.py show --top 20 [--company "OpenAI"] [--min-score 70]
 ```
 Display match results in terminal
 
 ### Export
 ```bash
-python3 jobbell.py export --output jobs.csv [--min-score 60]
+python3 jobforge.py export --output jobs.csv [--min-score 60]
 ```
 Export results to CSV
 
 ### Init
 ```bash
-python3 jobbell.py init [--example]
+python3 jobforge.py init [--example]
 ```
-Initialize JobBell in current directory
+Initialize JobForge in current directory
 
 ## 🎨 Features
 
@@ -109,10 +109,10 @@ Week 1: Setup
 └── Run initial discovery
 
 Week 2+: Weekly Routine
-├── python3 jobbell.py discover        # Find new jobs
-├── python3 jobbell.py match           # Score against profile
-├── python3 jobbell.py show --top 20   # Review top matches
-├── python3 jobbell.py forge --top 10  # Generate resumes
+├── python3 jobforge.py discover        # Find new jobs
+├── python3 jobforge.py match           # Score against profile
+├── python3 jobforge.py show --top 20   # Review top matches
+├── python3 jobforge.py forge --top 10  # Generate resumes
 └── Apply to top matches with tailored resumes
 ```
 
@@ -156,7 +156,7 @@ companies:
 ## 📈 Example Output
 
 ```
-🎯 JobBell - Job Matching
+🎯 JobForge - Job Matching
 ==================================================
 
 📊 Profile Summary:
@@ -236,6 +236,6 @@ Built by combining:
 
 ---
 
-**JobBell - Forge your career path with AI** 🔨
+**JobForge - Forge your career path with AI** 🔨
 
 *Made with AI, for humans looking for their next opportunity.*
