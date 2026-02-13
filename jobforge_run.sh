@@ -1,5 +1,5 @@
 #!/bin/bash
-# JobForge - Main Runner Script
+# JobForge - Installer Script
 
 set -e
 
@@ -17,7 +17,7 @@ fi
 JOBFORGE_DIR="$HOME/JobForge"
 
 if [ ! -d "$JOBFORGE_DIR" ]; then
-    echo "📥 Downloading JobForge..."
+    echo "📥 Installing JobForge..."
     git clone -q https://github.com/candidcsian/JobForge.git "$JOBFORGE_DIR" 2>/dev/null || {
         echo "❌ Git not found. Installing..."
         if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -25,12 +25,13 @@ if [ ! -d "$JOBFORGE_DIR" ]; then
         fi
         git clone -q https://github.com/candidcsian/JobForge.git "$JOBFORGE_DIR"
     }
+else
+    echo "📥 Updating JobForge..."
+    cd "$JOBFORGE_DIR"
+    git pull -q 2>/dev/null || true
 fi
 
 cd "$JOBFORGE_DIR"
-
-# Update if exists
-git pull -q 2>/dev/null || true
 
 # Setup venv
 if [ ! -d "venv" ]; then
@@ -42,12 +43,11 @@ fi
 source venv/bin/activate
 pip install -q --upgrade pip python-docx pyyaml httpx 2>/dev/null
 
-echo "✅ Ready!"
 echo ""
-
-# Run the agent
-python3 test_agent.py
-
+echo "✅ Installation Complete!"
 echo ""
-echo "📂 Files location: ~/JobForge"
-echo "🔄 Run again: cd ~/JobForge && ./start_agent.sh"
+echo "========================================================================"
+echo "To start JobForge, run:"
+echo "  cd ~/JobForge && ./start_agent.sh"
+echo "========================================================================"
+echo ""

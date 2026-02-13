@@ -2,13 +2,25 @@
 
 **Find jobs that match YOUR skills. Get referral contacts. Land interviews faster.**
 
-## 🚀 One-Command Install
+---
+
+## 🚀 Quick Start
+
+### **Step 1: Install JobForge**
 
 ```bash
 bash <(curl -sSL https://raw.githubusercontent.com/candidcsian/JobForge/main/jobforge_onecommand.sh)
 ```
 
-That's it! No setup, no configuration.
+This downloads and installs JobForge to `~/JobForge`
+
+### **Step 2: Run JobForge**
+
+```bash
+cd ~/JobForge && ./start_agent.sh
+```
+
+This starts the interactive agent that will guide you through the process.
 
 ---
 
