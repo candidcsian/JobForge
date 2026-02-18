@@ -524,6 +524,22 @@ class JobForgeAgent:
                 print("   • LinkedIn contact links (find referrals)")
                 print("   • Application tracking columns")
                 print("="*70)
+                
+                # NEW: Offer AI interview prep
+                print("\n" + "="*70)
+                print("🤖 AI Interview Coach (NEW!)")
+                print("="*70)
+                print("\nWant AI-powered interview prep for your top matches?")
+                print("For each job, you'll get:")
+                print("  • Why you're a good fit (specific reasons)")
+                print("  • What to emphasize in application")
+                print("  • 2-week interview preparation plan")
+                print("  • Periodic check-ins to track progress")
+                
+                ai_choice = input("\nGenerate AI prep plans? (yes/no): ").strip().lower()
+                
+                if ai_choice == 'yes':
+                    self.generate_ai_prep_plans(matched_jobs[:5])  # Top 5 jobs
             else:
                 print("\n⚠️  No matches found in free job APIs")
                 print("   Showing aggregator links instead...")
@@ -544,6 +560,45 @@ class JobForgeAgent:
         
         print("\n" + "="*70)
         
+    def generate_ai_prep_plans(self, top_jobs):
+        """Generate AI interview prep plans for top jobs"""
+        print("\n⏳ Generating AI interview prep plans...")
+        
+        import sys
+        sys.path.insert(0, str(self.base_dir / 'core'))
+        from ai.interview_coach import (
+            generate_match_explanation,
+            generate_prep_plan,
+            save_prep_plan
+        )
+        
+        prep_dir = self.results_dir / "interview_prep"
+        prep_dir.mkdir(parents=True, exist_ok=True)
+        
+        for i, job in enumerate(top_jobs, 1):
+            print(f"\n📋 {i}/{len(top_jobs)}: {job['title']} at {job['company']}")
+            
+            # Generate explanation and prep plan
+            explanation = generate_match_explanation(job, self.user_data, job['match_score'])
+            prep_plan = generate_prep_plan(job, self.user_data)
+            
+            # Save to file
+            output_file = save_prep_plan(job, explanation, prep_plan, prep_dir)
+            
+            print(f"   ✅ Prep plan saved: {output_file.name}")
+        
+        print(f"\n" + "="*70)
+        print(f"✅ Generated {len(top_jobs)} interview prep plans!")
+        print(f"📂 Location: {prep_dir}")
+        print("\n💡 Each plan includes:")
+        print("   • Why you match (specific reasons)")
+        print("   • What to emphasize")
+        print("   • 2-week day-by-day prep schedule")
+        print("   • Check-in reminders")
+        print("   • STAR story templates")
+        print("   • Company research guide")
+        print("="*70)
+    
     def show_company_links(self):
         """Show direct links to top company career pages"""
         print("\n" + "="*70)
