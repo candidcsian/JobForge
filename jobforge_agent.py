@@ -364,7 +364,13 @@ class JobForgeAgent:
         # If we have extracted text but no manual history, create a simple resume
         if self.user_data.get('extracted_text') and not self.user_data.get('manual_history'):
             print("   Using extracted resume content...")
-            output_file = self.career_dir / "master-resume.md"
+            
+            # Create filename with user's name
+            user_name = self.user_data.get('name', 'User')
+            clean_name = user_name.replace(' ', '_').replace('.', '')
+            filename = f"{clean_name}_Master_Resume.md"
+            
+            output_file = self.career_dir / filename
             output_file.write_text(f"""# {self.user_data.get('name', 'Your Name')}
 
 ## Contact
@@ -390,7 +396,12 @@ class JobForgeAgent:
         from resume.builder import build_master_resume_from_manual
         
         try:
-            output_file = self.career_dir / "master-resume.docx"
+            # Create filename with user's name
+            user_name = self.user_data.get('name', 'User')
+            clean_name = user_name.replace(' ', '_').replace('.', '')
+            filename = f"{clean_name}_Master_Resume.docx"
+            
+            output_file = self.career_dir / filename
             result = build_master_resume_from_manual(self.user_data, output_file)
             print(f"\n✅ Master resume created!")
             print(f"   {result}")
@@ -423,7 +434,13 @@ class JobForgeAgent:
         from resume.builder import create_ats_resume_docx
         
         try:
-            output_file = self.results_dir / "resumes" / "ATS_Resume.docx"
+            # Create filename with user's name
+            user_name = self.user_data.get('name', 'User')
+            # Clean name for filename (remove spaces, special chars)
+            clean_name = user_name.replace(' ', '_').replace('.', '')
+            filename = f"{clean_name}_ATS_Resume.docx"
+            
+            output_file = self.results_dir / "resumes" / filename
             result = create_ats_resume_docx(self.user_data, output_file)
             print(f"\n✅ ATS resume created!")
             print(f"   {result}")
