@@ -100,14 +100,14 @@ def create_ats_resume_docx(user_data, output_file):
     
     # Header - Name
     name_para = doc.add_paragraph()
-    name_run = name_para.add_run(user_data['name'].upper())
+    name_run = name_para.add_run(user_data.get('name', 'Your Name').upper())
     name_run.font.size = Pt(18)
     name_run.font.bold = True
     name_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
     
     # Contact info
     contact_para = doc.add_paragraph()
-    contact_text = f"{user_data['email']}"
+    contact_text = f"{user_data.get('email', 'your.email@example.com')}"
     if user_data.get('phone'):
         contact_text += f" | {user_data['phone']}"
     if user_data.get('location'):
@@ -115,15 +115,24 @@ def create_ats_resume_docx(user_data, output_file):
     contact_para.add_run(contact_text)
     contact_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
     
-    # Professional Experience
-    doc.add_paragraph()
-    exp_heading = doc.add_paragraph()
-    exp_run = exp_heading.add_run('PROFESSIONAL EXPERIENCE')
-    exp_run.font.size = Pt(14)
-    exp_run.font.bold = True
+    doc.add_paragraph()  # Spacing
     
-    # Add work history
-    if 'manual_history' in user_data:
+    # If we have extracted text from uploaded resume, use that
+    if user_data.get('extracted_text') and not user_data.get('manual_history'):
+        # Add the extracted resume content
+        content_para = doc.add_paragraph()
+        content_para.add_run(user_data['extracted_text'])
+        content_para.paragraph_format.space_after = Pt(12)
+    
+    # If we have manual history, use structured format
+    elif user_data.get('manual_history'):
+        # Professional Experience
+        exp_heading = doc.add_paragraph()
+        exp_run = exp_heading.add_run('PROFESSIONAL EXPERIENCE')
+        exp_run.font.size = Pt(14)
+        exp_run.font.bold = True
+        
+        # Add work history
         for company in user_data['manual_history']:
             # Company and role
             company_para = doc.add_paragraph()
@@ -149,6 +158,9 @@ def create_ats_resume_docx(user_data, output_file):
                     bullet.paragraph_format.left_indent = Pt(18)
             
             doc.add_paragraph()  # Spacing
+    else:
+        # No content available
+        doc.add_paragraph("No resume content available. Please provide your work history.")
     
     # Save
     output_path = Path(output_file)
