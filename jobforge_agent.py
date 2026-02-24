@@ -23,6 +23,72 @@ class JobForgeAgent:
         self.career_dir = self.base_dir / "career"
         self.results_dir = self.base_dir / "results"
         self.user_data = {}
+    
+    def _parse_documents(self, documents):
+        """Parse uploaded documents to extract career info."""
+        print("   📄 Reading documents...")
+        
+        all_text = ""
+        for doc_path in documents:
+            try:
+                path = Path(doc_path)
+                if path.suffix.lower() == '.pdf':
+                    # Try to extract text from PDF
+                    try:
+                        from PyPDF2 import PdfReader
+                        reader = PdfReader(str(path))
+                        for page in reader.pages:
+                            all_text += page.extract_text() + "\n"
+                        print(f"   ✅ Extracted from: {path.name}")
+                    except ImportError:
+                        print(f"   ⚠️  PyPDF2 not installed, skipping PDF: {path.name}")
+                    except Exception as e:
+                        print(f"   ⚠️  Could not read PDF: {path.name}")
+                
+                elif path.suffix.lower() in ['.docx', '.doc']:
+                    # Try to extract from Word doc
+                    try:
+                        from docx import Document
+                        doc = Document(str(path))
+                        for para in doc.paragraphs:
+                            all_text += para.text + "\n"
+                        print(f"   ✅ Extracted from: {path.name}")
+                    except Exception as e:
+                        print(f"   ⚠️  Could not read Word doc: {path.name}")
+                
+                elif path.suffix.lower() == '.txt':
+                    all_text += path.read_text()
+                    print(f"   ✅ Extracted from: {path.name}")
+                    
+            except Exception as e:
+                print(f"   ⚠️  Error reading {doc_path}: {e}")
+        
+        # Store extracted text
+        self.user_data['extracted_text'] = all_text
+        
+        # Try to extract basic info
+        if all_text:
+            print("\n   🔍 Analyzing content...")
+            
+            # Extract email
+            import re
+            emails = re.findall(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', all_text)
+            if emails and not self.user_data.get('email'):
+                self.user_data['email'] = emails[0]
+                print(f"   ✅ Found email: {emails[0]}")
+            
+            # Extract phone
+            phones = re.findall(r'\b\d{3}[-.]?\d{3}[-.]?\d{4}\b', all_text)
+            if phones and not self.user_data.get('phone'):
+                self.user_data['phone'] = phones[0]
+                print(f"   ✅ Found phone: {phones[0]}")
+            
+            # Save to career directory for skill extraction
+            career_file = self.career_dir / "uploaded-resume.md"
+            career_file.write_text(f"# Resume Content\n\n{all_text}")
+            print(f"   ✅ Saved for analysis: {career_file.name}")
+        
+        print("   ✅ Document parsing complete!")
         
     def welcome(self):
         """Welcome message and introduction"""
@@ -110,7 +176,13 @@ class JobForgeAgent:
         print("3. LinkedIn profile export")
         print("4. None - I'll provide information manually")
         
-        doc_choice = input("\nChoose option (1/2/3/4): ")
+        doc_choice = input("\nChoose option (1/2/3/4): ").strip()
+        
+        if doc_choice == '4':
+            print("\n📝 No problem! I'll guide you through manual entry.")
+            self.user_data['documents'] = []
+            self.collect_manual_work_history()
+            return
         
         if doc_choice in ['1', '2', '3']:
             print("\n📂 Please provide the file path(s):")
@@ -123,11 +195,25 @@ class JobForgeAgent:
                 if file_path.lower() == 'done':
                     break
                 if file_path:
-                    documents.append(file_path)
-                    print(f"   ✅ Added: {file_path}")
+                    # Remove escape characters and quotes
+                    file_path = file_path.replace('\\', '').strip('\'"')
+                    
+                    # Check if file exists
+                    from pathlib import Path
+                    if Path(file_path).exists():
+                        documents.append(file_path)
+                        print(f"   ✅ Added: {file_path}")
+                    else:
+                        print(f"   ❌ File not found: {file_path}")
+                        print(f"   Please check the path and try again.")
             
             self.user_data['documents'] = documents
             print(f"\n✅ Collected {len(documents)} document(s)")
+            
+            # Parse documents to extract basic info
+            if len(documents) > 0:
+                print("\n⏳ Extracting information from documents...")
+                self._parse_documents(documents)
             
             # Check if any documents were provided
             if len(documents) == 0:
@@ -145,9 +231,11 @@ class JobForgeAgent:
                     print("\n📝 Let's collect your work history manually...")
                     self.collect_manual_work_history()
         else:
-            print("\n📝 No problem! I'll guide you through manual entry.")
-            self.user_data['documents'] = []
-            self.collect_manual_work_history()
+            # Invalid choice
+            print(f"\n❌ Invalid choice: {doc_choice}")
+            print("Please choose 1, 2, 3, or 4")
+            print("Restarting...")
+            return self.collect_career_timeline()
     
     def collect_manual_work_history(self):
         """Collect work history manually from user"""
@@ -267,7 +355,36 @@ class JobForgeAgent:
         
         print("\n⏳ Processing your career data...")
         
-        # Import builder
+        # Check if we have manual history or extracted text
+        if not self.user_data.get('manual_history') and not self.user_data.get('extracted_text'):
+            print("\n⚠️  No career data available to build resume.")
+            print("   Skipping resume generation...")
+            return
+        
+        # If we have extracted text but no manual history, create a simple resume
+        if self.user_data.get('extracted_text') and not self.user_data.get('manual_history'):
+            print("   Using extracted resume content...")
+            output_file = self.career_dir / "master-resume.md"
+            output_file.write_text(f"""# {self.user_data.get('name', 'Your Name')}
+
+## Contact
+- Email: {self.user_data.get('email', 'your.email@example.com')}
+- Phone: {self.user_data.get('phone', 'Your Phone')}
+- Location: {self.user_data.get('location', 'Your Location')}
+
+## Resume Content
+
+{self.user_data['extracted_text']}
+
+---
+*This is your master resume extracted from uploaded documents.*
+*You can edit this file to add more details.*
+""")
+            print(f"\n✅ Master resume created!")
+            print(f"   {output_file}")
+            return
+        
+        # Import builder for manual history
         import sys
         sys.path.insert(0, str(self.base_dir / 'core'))
         from resume.builder import build_master_resume_from_manual
@@ -288,12 +405,15 @@ class JobForgeAgent:
         print("="*70)
         
         print("\nWhat type of roles are you targeting?")
-        print("1. Senior QA Engineer / SDET")
-        print("2. QA Lead / Manager")
-        print("3. Software Engineer")
-        print("4. Other")
+        print("   (e.g., Software Engineer, Data Scientist, Product Manager, QA Engineer)")
         
-        role_choice = input("\nChoose (1-4): ").strip()
+        target_role = input("\n   > ").strip()
+        
+        if not target_role:
+            target_role = "Software Engineer"
+            print(f"   Using default: {target_role}")
+        
+        self.user_data['target_role'] = target_role
         
         print("\n⏳ Creating your ATS-optimized resume...")
         
@@ -318,27 +438,139 @@ class JobForgeAgent:
         print("="*70)
         
         print("\nDo you want help updating your LinkedIn profile?")
-        choice = input("(yes/no): ").lower()
+        choice = input("(yes/no): ").strip().lower()
         
         if choice == 'yes':
-            print("\n📋 I'll create optimized content for:")
-            print("   ✅ Headline (220 characters)")
-            print("   ✅ About section (2,600 characters)")
-            print("   ✅ Experience descriptions")
-            print("   ✅ Skills to add")
-            print("   ✅ Privacy settings for discreet job search")
+            print("\n⏳ Generating LinkedIn optimization guide...")
             
-            print("\n⏳ Generating LinkedIn content...")
+            # Create LinkedIn guide document
+            from docx import Document
+            from docx.shared import Pt, RGBColor
+            from docx.enum.text import WD_ALIGN_PARAGRAPH
             
-            print("\n✅ LinkedIn content created!")
-            print(f"   Location: {self.results_dir}/resumes/LinkedIn_Profile.md")
+            doc = Document()
             
-            print("\n📱 Next steps:")
-            print("   1. Open the LinkedIn_Profile.md file")
-            print("   2. Copy the headline and paste to LinkedIn")
-            print("   3. Copy the About section and paste to LinkedIn")
-            print("   4. Add the recommended skills")
-            print("   5. Update privacy settings as shown")
+            # Title
+            title = doc.add_paragraph()
+            title_run = title.add_run('LinkedIn Profile Optimization Guide')
+            title_run.font.size = Pt(18)
+            title_run.font.bold = True
+            title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            
+            doc.add_paragraph()
+            
+            # Headline Section
+            doc.add_heading('1. Optimized Headline', level=1)
+            doc.add_paragraph('Your headline appears in search results and is limited to 220 characters.')
+            
+            headline_para = doc.add_paragraph()
+            headline_para.add_run('Suggested Format:\n').font.bold = True
+            target_role = self.user_data.get('target_role', 'Your Target Role')
+            headline_para.add_run(f'{target_role} | [Key Skill 1] | [Key Skill 2] | [Key Skill 3] | Open to Opportunities')
+            
+            doc.add_paragraph()
+            
+            # About Section
+            doc.add_heading('2. About Section', level=1)
+            doc.add_paragraph('Use this template (2,600 character limit):')
+            
+            about_template = f"""
+I'm a {target_role} with [X] years of experience in [your domain].
+
+🎯 What I Do:
+• [Key responsibility 1]
+• [Key responsibility 2]
+• [Key responsibility 3]
+
+💡 Key Achievements:
+• [Achievement with metrics - e.g., "Increased efficiency by 40%"]
+• [Achievement with impact]
+• [Achievement with results]
+
+🔧 Technical Skills:
+[List your top 10-15 skills from your resume]
+
+📫 Open to opportunities in: {target_role} roles
+Let's connect if you're looking for someone who can [your unique value proposition].
+"""
+            doc.add_paragraph(about_template.strip())
+            
+            doc.add_paragraph()
+            
+            # Skills Section
+            doc.add_heading('3. Skills to Add', level=1)
+            doc.add_paragraph('Add these skills to your LinkedIn profile (you can endorse up to 50):')
+            
+            skills_para = doc.add_paragraph()
+            skills_para.add_run('• Extract skills from your resume\n')
+            skills_para.add_run('• Add industry-standard skills for your role\n')
+            skills_para.add_run('• Include tools and technologies you use\n')
+            skills_para.add_run('• Add soft skills (Leadership, Communication, etc.)')
+            
+            doc.add_paragraph()
+            
+            # Privacy Settings
+            doc.add_heading('4. Privacy Settings for Job Search', level=1)
+            doc.add_paragraph('Enable these settings for a discreet job search:')
+            
+            privacy_steps = [
+                'Go to Settings & Privacy → Visibility → Profile viewing options',
+                'Set to "Private mode" when viewing other profiles',
+                'Go to Job seeking preferences → Let recruiters know you\'re open',
+                'Turn ON "Open to work" (visible to recruiters only)',
+                'Select your target roles and locations',
+                'Turn OFF "Share with network" to keep it private from your current employer'
+            ]
+            
+            for i, step in enumerate(privacy_steps, 1):
+                doc.add_paragraph(f'{i}. {step}', style='List Number')
+            
+            doc.add_paragraph()
+            
+            # Action Items
+            doc.add_heading('5. Action Items', level=1)
+            action_items = [
+                'Update your headline with the suggested format',
+                'Rewrite your About section using the template',
+                'Add at least 10 relevant skills',
+                'Update privacy settings as shown above',
+                'Add a professional profile photo (if not already)',
+                'Turn on "Open to Work" badge (recruiters only)',
+                'Update your current role and experience',
+                'Request recommendations from colleagues'
+            ]
+            
+            for item in action_items:
+                doc.add_paragraph(f'☐ {item}', style='List Bullet')
+            
+            doc.add_paragraph()
+            
+            # Pro Tips
+            doc.add_heading('6. Pro Tips', level=1)
+            tips = [
+                'Use keywords from job descriptions in your headline and about section',
+                'Quantify achievements with numbers (increased X by Y%)',
+                'Keep your headline under 220 characters',
+                'Update your profile regularly to appear in more searches',
+                'Engage with content in your industry (like, comment, share)',
+                'Connect with recruiters in your target companies',
+                'Join relevant LinkedIn groups for your industry'
+            ]
+            
+            for tip in tips:
+                doc.add_paragraph(f'💡 {tip}', style='List Bullet')
+            
+            # Save document
+            output_file = self.results_dir / "resumes" / "LinkedIn_Optimization_Guide.docx"
+            output_file.parent.mkdir(parents=True, exist_ok=True)
+            doc.save(str(output_file))
+            
+            print(f"\n✅ LinkedIn optimization guide created!")
+            print(f"   📄 {output_file}")
+            print(f"\n📱 Next steps:")
+            print(f"   1. Open the Word document")
+            print(f"   2. Follow the instructions to update your LinkedIn")
+            print(f"   3. Copy and paste the suggested content")
             
             input("\nPress Enter when you've updated LinkedIn...")
             print("✅ Great! Your LinkedIn is now optimized!")
@@ -500,7 +732,7 @@ class JobForgeAgent:
         
         print("\nNow let's find jobs that match YOUR profile!")
         print("\nWhat type of roles are you looking for?")
-        role = input("   (e.g., Senior QA Engineer, SDET, Software Engineer): ").strip()
+        role = input("   (e.g., Software Engineer, Data Analyst, Product Manager): ").strip()
         
         if not role:
             role = "Software Engineer"
