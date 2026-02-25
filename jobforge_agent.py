@@ -70,15 +70,30 @@ class JobForgeAgent:
         if all_text:
             print("\n   🔍 Analyzing content...")
             
-            # Extract email
+            # Extract email (improved pattern)
             import re
-            emails = re.findall(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', all_text)
+            emails = re.findall(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b', all_text)
             if emails and not self.user_data.get('email'):
                 self.user_data['email'] = emails[0]
                 print(f"   ✅ Found email: {emails[0]}")
             
-            # Extract phone
-            phones = re.findall(r'\b\d{3}[-.]?\d{3}[-.]?\d{4}\b', all_text)
+            # Extract phone (improved pattern for US/international)
+            phones = re.findall(r'\+?\d{1,3}[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}', all_text)
+            if phones and not self.user_data.get('phone'):
+                self.user_data['phone'] = phones[0]
+                print(f"   ✅ Found phone: {phones[0]}")
+            
+            # Try to extract name from first line (common in resumes)
+            lines = all_text.strip().split('\n')
+            if lines and not self.user_data.get('name'):
+                first_line = lines[0].strip()
+                # Split by common delimiters (email, pipe, multiple spaces)
+                name_part = first_line.split('@')[0].split('|')[0].split('  ')[0].strip()
+                # Check if it looks like a name (2-4 words, mostly letters)
+                words = name_part.split()
+                if 2 <= len(words) <= 4 and all(len(w) > 1 and w.replace('.', '').replace('-', '').isalpha() for w in words):
+                    self.user_data['name'] = name_part.title()  # Proper case
+                    print(f"   ✅ Found name: {self.user_data['name']}")
             if phones and not self.user_data.get('phone'):
                 self.user_data['phone'] = phones[0]
                 print(f"   ✅ Found phone: {phones[0]}")
