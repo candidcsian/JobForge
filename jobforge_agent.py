@@ -104,46 +104,98 @@ class JobForgeAgent:
         print("\nThis will take about 30-60 minutes. Let's get started!\n")
         
     def collect_basic_info(self):
-        """Collect basic user information"""
+        """Collect basic user information - now asks for resume first"""
         print("\n" + "="*70)
-        print("📝 STEP 1: Basic Information")
+        print("📝 STEP 1: Upload Your Resume (Recommended)")
         print("="*70)
         
-        print("\n1. What's your full name?")
-        self.user_data['name'] = input("   > ")
+        print("\n💡 Upload your resume first, and I'll extract your details automatically!")
+        print("\nDo you have a resume to upload?")
+        print("1. Yes - Upload resume (PDF/DOCX/TXT)")
+        print("2. No - I'll enter details manually")
         
-        print("2. Your email address:")
-        self.user_data['email'] = input("   > ")
+        choice = input("\nChoose (1/2): ").strip()
         
-        print("3. Your phone number:")
-        self.user_data['phone'] = input("   > ")
+        if choice == '1':
+            print("\n📂 Please provide your resume file path:")
+            print("   (You can drag and drop the file here)")
+            
+            while True:
+                file_path = input("\nFile path: ").strip()
+                if file_path:
+                    # Clean path
+                    file_path = file_path.replace('\\', '').strip('\'"')
+                    
+                    from pathlib import Path
+                    if Path(file_path).exists():
+                        print(f"\n⏳ Extracting information from your resume...")
+                        self._parse_documents([file_path])
+                        break
+                    else:
+                        print(f"   ❌ File not found. Please check the path and try again.")
+                else:
+                    print("   ❌ Please provide a file path.")
         
-        print("4. Current location (e.g., Bangalore, India):")
-        self.user_data['location'] = input("   > ")
+        # Now confirm/collect remaining details
+        print("\n" + "="*70)
+        print("✅ Confirm Your Details")
+        print("="*70)
         
-        print("\n5. Current employment status:")
-        print("   a) Employed")
-        print("   b) Unemployed")
-        print("   c) Freelancing")
-        status = input("   Choose (a/b/c): ").lower().strip()
-        self.user_data['employment_status'] = status
+        # Name
+        extracted_name = self.user_data.get('name', '')
+        if extracted_name:
+            print(f"\n1. Name: {extracted_name}")
+            confirm = input("   Is this correct? (yes/no): ").strip().lower()
+            if confirm != 'yes':
+                self.user_data['name'] = input("   Enter your full name: ").strip()
+        else:
+            print("\n1. What's your full name?")
+            self.user_data['name'] = input("   > ").strip()
         
-        if status == 'a':
-            print("\n6. Current company name:")
-            self.user_data['current_company'] = input("   > ")
-            print("7. Current job title:")
-            self.user_data['current_role'] = input("   > ")
-            print("8. When did you start (e.g., Jan 2020)?")
-            self.user_data['current_start'] = input("   > ")
+        # Email
+        extracted_email = self.user_data.get('email', '')
+        if extracted_email:
+            print(f"\n2. Email: {extracted_email}")
+            confirm = input("   Is this correct? (yes/no): ").strip().lower()
+            if confirm != 'yes':
+                self.user_data['email'] = input("   Enter your email: ").strip()
+        else:
+            print("\n2. Your email address:")
+            self.user_data['email'] = input("   > ").strip()
         
-        print("\n✅ Basic info collected!")
+        # Phone
+        extracted_phone = self.user_data.get('phone', '')
+        if extracted_phone:
+            print(f"\n3. Phone: {extracted_phone}")
+            confirm = input("   Is this correct? (yes/no): ").strip().lower()
+            if confirm != 'yes':
+                self.user_data['phone'] = input("   Enter your phone: ").strip()
+        else:
+            print("\n3. Your phone number:")
+            self.user_data['phone'] = input("   > ").strip()
+        
+        # Location
+        print("\n4. Current location (e.g., Bangalore, India):")
+        self.user_data['location'] = input("   > ").strip()
+        
+        print("\n✅ Details confirmed!")
         
     def collect_career_timeline(self):
-        """Collect career history year by year"""
+        """Collect career history - simplified if resume uploaded"""
         print("\n" + "="*70)
-        print("📅 STEP 2: Career Timeline")
+        print("📅 STEP 2: Career History")
         print("="*70)
         
+        # If we have extracted text, skip detailed collection
+        if self.user_data.get('extracted_text'):
+            print("\n✅ I've extracted your career history from your resume!")
+            print("   Your work experience will be used for job matching.")
+            print("\n   You can review it in: career/uploaded-resume.md")
+            input("\nPress Enter to continue...")
+            return
+        
+        # Otherwise, collect manually
+        print("\nSince you didn't upload a resume, let's collect your work history.")
         print("\nWhat year did you start your career? (e.g., 2009):")
         start_year = input("   > ").strip()
         
